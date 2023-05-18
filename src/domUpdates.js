@@ -1,7 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 import recipeData from "./data/recipes.js"
-import { filterByTag, filterByName } from "./functions/filter-recipes.js"
+import { filterByTag, filterByName, filterRecipes } from "./functions/filter-recipes.js"
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
 import { currentRecipe, currentRecipes, savedRecipes } from "./data/data-model.js";
@@ -43,21 +43,6 @@ const displayRecipes = (recipes) => {
   })
 };
 
-const viewFilteredRecipes = (event) => {
-  allContainer.innerHTML = ''
-  hide([categoriesSection, footerSection, recipePage]);
-  show([allSection, homeButton]);
-  recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag => {
-      if(tag === event.target.id)
-      allContainer.innerHTML += 
-      `<div style='background-image: url(${recipe.image})' class='all__recipes'>
-      <p class='all__text'>${recipe.name}</p>
-      </div>`
-    })
-  })
-};
-
 const filterByNameOrTag = () => {
   allContainer.innerHTML = ''
   hide([categoriesSection, footerSection, recipePage]);
@@ -86,18 +71,9 @@ const showHome = () => {
 
 const viewRecipes = (event) => {
   const target = event.target.id;
-  const filteredByName = filterByName(recipeData, event.target.id);
-  const filteredByTag = filterByTag(recipeData, event.target.id);
-  if(filteredByName !== 'No results') {
-    displayRecipes(filteredByName)
-  }
-  if(filteredByTag !== 'Error: try a new tag') {
-    displayRecipes(filteredByTag)
-  }
-  if(target === 'all') {
-    displayRecipes(recipeData);
-  }
-};
+  const filteredRecipes = filterRecipes(recipeData, target)
+  displayRecipes(filteredRecipes)
+}
 
 const viewRecipe = (event) => {
   recipeData.forEach(recipe => {
@@ -147,7 +123,6 @@ const displayInstructions = (recipe) => {
 export { 
   viewAll,
   displayRecipes,
-  viewFilteredRecipes,
   viewSearchResults, 
   filterByNameOrTag,
   viewRecipes,

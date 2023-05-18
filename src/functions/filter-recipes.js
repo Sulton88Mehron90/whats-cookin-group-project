@@ -47,7 +47,7 @@ const filterRecipes = (recipeData, filter) => {
     filteredByTag.forEach(recipe => recipes.push(recipe));
   }
   if(filter === 'all') {
-    recipes.push(recipeData);
+    recipeData.forEach(recipe => recipes.push(recipe));
   }
   return recipes;
 };

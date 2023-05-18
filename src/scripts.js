@@ -9,25 +9,9 @@ import ingredientsData from './data/ingredients.js'
 import sampleRecipeData from './data/sample-recipes.js'
 import { filterByName, filterByTag } from './functions/filter-recipes.js'
 import recipeData from './data/recipes.js'
-import { allContainer, viewRecipe, viewRecipes, viewFilteredRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
+import { allContainer, viewRecipe, viewRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
    homeButton, showHome, categoriesContainer 
  } from './domUpdates.js'
-
-const setUpAllRecipes = (event) => {
-  viewAllRecipes(event)
-  const recipes = allRecipes()
-  recipes.forEach((recipe) => {
-    recipe.addEventListener('click', viewRecipe)
-  })
-}
-
-const setUpRecipes = (event) => {
-  viewFilteredRecipes(event)
-  const recipes = allRecipes()
-  recipes.forEach((recipe) => {
-    recipe.addEventListener('click', viewRecipe)
-  })
-}
 
 const setUpSearchedRecipes = (event) => {
   filterByNameOrTag(event)
