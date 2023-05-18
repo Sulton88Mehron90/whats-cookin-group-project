@@ -5,12 +5,9 @@ import apiCalls from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import './images/search-icon.png'
-import ingredientsData from './data/ingredients.js'
-import sampleRecipeData from './data/sample-recipes.js'
-import { filterByName, filterByTag } from './functions/filter-recipes.js'
-import recipeData from './data/recipes.js'
+// import { currentRecipe } from './data/data-model.js'
 import { allContainer, viewRecipe, viewRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
-   homeButton, showHome, categoriesContainer, makeCurrentRecipe 
+   homeButton, showHome, categoriesContainer, makeCurrentRecipe, selectRecipe 
  } from './domUpdates.js'
 
 const setUpSearchedRecipes = (event) => {
@@ -24,9 +21,5 @@ const setUpSearchedRecipes = (event) => {
 viewSearchResults.addEventListener('click', setUpSearchedRecipes)
 homeButton.addEventListener('click', showHome)
 categoriesContainer.addEventListener('click', viewRecipes);
-allContainer.addEventListener('click', event => {
-  console.log(event.target.id)
-  // if id matches recipe id show recipe on next page
-})
+allContainer.addEventListener('click', selectRecipe)
 
-makeCurrentRecipe(recipeData[0]);
