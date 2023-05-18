@@ -14,7 +14,6 @@ const footerSection = document.querySelector('.footer');
 const viewSearchResults = document.querySelector('.home__searchIcon');
 const searchInput = document.querySelector('.home__searchInput');
 const allContainer = document.querySelector('.all__container');
-const allRecipes = () => document.querySelectorAll('.all__recipes');
 const recipeSection = document.querySelector('.recipe');
 const recipeTitle = document.querySelector('.recipe__title');
 const imageContainer = document.querySelector('.image__container');
@@ -39,6 +38,9 @@ const displayRecipes = (recipes) => {
   allContainer.innerHTML = ''
   hide([categoriesSection, footerSection, recipeSection]);
   show([allSection, homeButton]);
+  if (!recipes) {
+    return 'No results'
+  }
   recipes.forEach(recipe => {
     allContainer.innerHTML += 
     `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
@@ -47,27 +49,17 @@ const displayRecipes = (recipes) => {
   })
 };
 
-//Questionable
-const filterByNameOrTag = () => {
-  allContainer.innerHTML = ''
-  hide([categoriesSection, footerSection, recipeSection]);
-  show([allSection, homeButton]);
-  let results = filterByTag(recipeData, searchInput.value)
-  if (results === `Error: try a new tag`){
-    results = filterByName(recipeData, searchInput.value)
-  }
-  if (results !== 'No results' && searchInput.value){
-    results.forEach(recipe => {
-      allContainer.innerHTML += 
-      `<div style="background-image: url(${recipe.image})" class='all__recipes'>
-        <p class='all__text'>${recipe.name}</p>
-      </div>`
-    })
-  } else {
+const searchRecipes = () => {
+  const filteredRecipes = filterRecipes(recipeData, searchInput.value);
+  if(!searchInput.value || !filteredRecipes.length) {
     allContainer.innerHTML = 
-      `<p class='all__text'>No Results!</p>`
+      displayRecipes();
+       `<p class='all__text'>No Results!</p>`
+  } else {
+ 
+  displayRecipes(filteredRecipes)
   }
-};
+}
 
 //Good
 const showHome = () => {
@@ -85,7 +77,6 @@ const viewRecipes = (event) => {
 // Updates Data Model
 // Move to its own file and import/export
 const makeCurrentRecipe = (recipeData) => {
-  
   let recipe = {
     name: recipeData.name,
     image: recipeData.image,
@@ -97,6 +88,7 @@ const makeCurrentRecipe = (recipeData) => {
   return recipe;
 };
 
+//Good
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id)
   const foundRecipe = recipeData.find(recipe => recipe.id === target)
@@ -118,15 +110,14 @@ const viewRecipe = (recipe) => {
 export { 
   viewAll,
   displayRecipes,
-  viewSearchResults, 
-  filterByNameOrTag,
   viewRecipes,
   viewRecipe,
-  allRecipes,
   homeButton,
+  viewSearchResults,
   showHome,
   categoriesContainer,
   allContainer,
   makeCurrentRecipe,
-  selectRecipe
+  selectRecipe,
+  searchRecipes
 }

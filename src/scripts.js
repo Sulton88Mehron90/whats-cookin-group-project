@@ -6,19 +6,11 @@ import apiCalls from './apiCalls'
 import './images/turing-logo.png'
 import './images/search-icon.png'
 // import { currentRecipe } from './data/data-model.js'
-import { allContainer, viewRecipe, viewRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
-   homeButton, showHome, categoriesContainer, makeCurrentRecipe, selectRecipe 
+import { allContainer, viewRecipes, viewSearchResults,
+   homeButton, showHome, categoriesContainer, selectRecipe, searchRecipes 
  } from './domUpdates.js'
 
-const setUpSearchedRecipes = (event) => {
-  filterByNameOrTag(event)
-  const recipes = allRecipes()
-  recipes.forEach((recipe) => {
-    recipe.addEventListener('click', viewRecipe)
-  })
-}
-
-viewSearchResults.addEventListener('click', setUpSearchedRecipes)
+viewSearchResults.addEventListener('click', searchRecipes)
 homeButton.addEventListener('click', showHome)
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', selectRecipe)
