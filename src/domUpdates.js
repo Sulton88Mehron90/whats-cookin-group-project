@@ -15,7 +15,7 @@ const viewSearchResults = document.querySelector('.home__searchIcon');
 const searchInput = document.querySelector('.home__searchInput');
 const allContainer = document.querySelector('.all__container');
 const allRecipes = () => document.querySelectorAll('.all__recipes');
-const recipePage = document.querySelector('.recipe');
+const recipeSection = document.querySelector('.recipe');
 const recipeTitle = document.querySelector('.recipe__title');
 const imageContainer = document.querySelector('.image__container');
 const ingredientsEl = document.querySelector('.recipe__ingredients');
@@ -31,6 +31,7 @@ const hide = (names) => {
   names.forEach((name) => name.classList.add('class--hidden'))
 };
 
+//Good
 const displayRecipes = (recipes) => {
   allContainer.innerHTML = ''
   hide([categoriesSection, footerSection, recipePage]);
@@ -43,6 +44,7 @@ const displayRecipes = (recipes) => {
   })
 };
 
+//Questionable
 const filterByNameOrTag = () => {
   allContainer.innerHTML = ''
   hide([categoriesSection, footerSection, recipePage]);
@@ -64,25 +66,57 @@ const filterByNameOrTag = () => {
   }
 }
 
+//Good
 const showHome = () => {
   hide([allSection, homeButton, recipePage]);
   show([categoriesSection, footerSection]);
 }
 
+//Good
 const viewRecipes = (event) => {
   const target = event.target.id;
   const filteredRecipes = filterRecipes(recipeData, target)
   displayRecipes(filteredRecipes)
 }
 
-const viewRecipe = (event) => {
-  recipeData.forEach(recipe => {
-    if(recipe.name === event.target.innerText){
-      displayRecipe(recipe)
-    }
-  })
-};
+// Updates Data Model
+const makeCurrentRecipe = (recipeData) => {
+  
+  let recipe = {
+    name: recipe.name,
+    image: recipe.image,
+    tags: recipe.tags,
+    cost: calculateCost(recipe.name),
+    instructions: recipe.instructions,
+    ingredients: recipeIngredients(recipe.name)
+  }
+  currentRecipe = recipe;
+}
 
+//Questionable
+const viewRecipe = (recipe) => {
+  `<section class="recipe__header">
+    <section class="recipe__header2"> 
+    </section>
+    <h1 class="recipe__title">${recipe.name}</h1>
+    <button class="recipe__sbutton">Save Recipe</button>
+  </section>
+  <section class="recipe__main">
+    <section class="recipe__left">
+      <img class="recipe__image" src="${recipe.image}"></img>
+        <section class="recipe__ingredients">Ingredients:
+        ${recipe.ingredients}
+        </section>
+        <section class="recipe__cost">
+        ${recipe.cost}
+        </section>
+    </section>
+    <section class="recipe__instructions">${recipe.instructions}
+  </section>
+</section>`
+}
+
+//Questionable
 const displayRecipe = (recipe) => {
   recipeTitle.innerText = ''
   recipeCost.innerText = ''
@@ -96,6 +130,7 @@ const displayRecipe = (recipe) => {
   recipeCost.innerText = `The estimated cost is ${cost}`;
 }
 
+//Questionable
 const displayRecipeImg = (recipe) => {
   imageContainer.innerHTML =''
   const image = document.createElement('img');
@@ -104,6 +139,7 @@ const displayRecipeImg = (recipe) => {
   imageContainer.appendChild(image);
 }
 
+//Questionable
 const displayIngredients = (recipe) => {
   ingredientsEl.innerHTML = 'Ingredients:'
   const ingredientsArr = recipeIngredients(recipe.name);
@@ -113,6 +149,7 @@ const displayIngredients = (recipe) => {
   })
 }
 
+//Questionable
 const displayInstructions = (recipe) => {
   instructionsEl.innerHTML = 'Instructions:'
   recipe.instructions.forEach((instruction, index) => {
@@ -131,5 +168,6 @@ export {
   homeButton,
   showHome,
   categoriesContainer,
-  allContainer
+  allContainer,
+  makeCurrentRecipe
 }

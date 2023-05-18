@@ -10,7 +10,7 @@ import sampleRecipeData from './data/sample-recipes.js'
 import { filterByName, filterByTag } from './functions/filter-recipes.js'
 import recipeData from './data/recipes.js'
 import { allContainer, viewRecipe, viewRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
-   homeButton, showHome, categoriesContainer 
+   homeButton, showHome, categoriesContainer, makeCurrentRecipe 
  } from './domUpdates.js'
 
 const setUpSearchedRecipes = (event) => {
@@ -26,4 +26,7 @@ homeButton.addEventListener('click', showHome)
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', event => {
   console.log(event.target.id)
+  // if id matches recipe id show recipe on next page
 })
+
+makeCurrentRecipe(recipeData[0]);
