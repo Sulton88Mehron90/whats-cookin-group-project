@@ -5,7 +5,7 @@ import { filterByTag, filterByName, filterRecipes } from "./functions/filter-rec
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { currentRecipe, currentRecipes, savedRecipes } from "./data/data-model.js";
+// import { currentRecipe, currentRecipes, savedRecipes } from "./data/data-model.js";
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
