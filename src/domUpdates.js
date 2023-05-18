@@ -2,6 +2,7 @@
 
 import recipeData from "./data/recipes.js"
 import { filterByTag, filterByName, filterRecipes } from "./functions/filter-recipes.js"
+import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
 import { currentRecipe, currentRecipes, savedRecipes } from "./data/data-model.js";
@@ -76,30 +77,19 @@ const viewRecipes = (event) => {
 
 // Updates Data Model
 // Move to its own file and import/export
-const makeCurrentRecipe = (recipeData) => {
-  let recipe = {
-    name: recipeData.name,
-    image: recipeData.image,
-    tags: recipeData.tags,
-    cost: calculateCost(recipeData.name),
-    instructions: recipeData.instructions,
-    ingredients: recipeIngredients(recipeData.name)
-  }
-  return recipe;
-};
 
 //Good
 const selectRecipe = (event) => {
-  const target = parseInt(event.target.id)
-  const foundRecipe = recipeData.find(recipe => recipe.id === target)
+  const target = parseInt(event.target.id);
+  const foundRecipe = recipeData.find(recipe => recipe.id === target);
   const currentRecipe = makeCurrentRecipe(foundRecipe);
   viewRecipe(currentRecipe);
 }
 
 //Good
 const viewRecipe = (recipe) => {
-  show([recipeSection])
-  hide([allSection])
+  show([recipeSection]);
+  hide([allSection]);
   recipeTitle.innerText = recipe.name;
   imageContainer.innerHTML = `<img src="${recipe.image}">`;
   ingredientsDisplay.innerText = `Ingredients: ${recipe.ingredients}`; 
@@ -109,14 +99,14 @@ const viewRecipe = (recipe) => {
 
 export { 
   viewAll,
+  categoriesContainer,
+  allContainer,
+  homeButton,
+  viewSearchResults,
   displayRecipes,
   viewRecipes,
   viewRecipe,
-  homeButton,
-  viewSearchResults,
   showHome,
-  categoriesContainer,
-  allContainer,
   makeCurrentRecipe,
   selectRecipe,
   searchRecipes
