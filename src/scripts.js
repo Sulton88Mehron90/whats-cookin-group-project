@@ -25,5 +25,5 @@ viewSearchResults.addEventListener('click', setUpSearchedRecipes)
 homeButton.addEventListener('click', showHome)
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', event => {
-  console.log(event.target)
+  console.log(event.target.id)
 })

@@ -37,8 +37,8 @@ const displayRecipes = (recipes) => {
   show([allSection, homeButton]);
   recipes.forEach(recipe => {
     allContainer.innerHTML += 
-    `<div style="background-image: url(${recipe.image})" class='all__recipes'>
-    <p class='all__text'>${recipe.name}</p>
+    `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
+      <p class='all__text' id="${recipe.id}">${recipe.name}</p>
     </div>`
   })
 };
