@@ -6,12 +6,9 @@ import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
 
 const viewAll = document.querySelector('.categories__all');
-const viewSalads = document.querySelector('.categories__salads');
-const viewHordoeuvres = document.querySelector('.categories__horsdoeuvres');
-const viewMains = document.querySelector('.categories__mains');
-const viewSides = document.querySelector('.categories__sides');
 const allSection = document.querySelector('.all');
 const categoriesSection = document.querySelector('.categories');
+const categoriesContainer = document.querySelector('.categories__container');
 const footerSection = document.querySelector('.footer');
 const viewSearchResults = document.querySelector('.home__searchIcon');
 const searchInput = document.querySelector('.home__searchInput');
@@ -33,11 +30,11 @@ const hide = (names) => {
   names.forEach((name) => name.classList.add('class--hidden'))
 };
 
-const viewAllRecipes = () => {
+const displayRecipes = (recipes) => {
   allContainer.innerHTML = ''
   hide([categoriesSection, footerSection, recipePage]);
   show([allSection, homeButton]);
-  recipeData.forEach(recipe => {
+  recipes.forEach(recipe => {
     allContainer.innerHTML += 
     `<div style="background-image: url(${recipe.image})" class='all__recipes'>
     <p class='all__text'>${recipe.name}</p>
@@ -86,14 +83,28 @@ const showHome = () => {
   show([categoriesSection, footerSection]);
 }
 
+const viewRecipes = (event) => {
+  const target = event.target.id;
+  const filteredByName = filterByName(recipeData, event.target.id);
+  const filteredByTag = filterByTag(recipeData, event.target.id);
+  if(filteredByName !== 'No results') {
+    displayRecipes(filteredByName)
+  }
+  if(filteredByTag !== 'Error: try a new tag') {
+    displayRecipes(filteredByTag)
+  }
+  if(target === 'all') {
+    displayRecipes(recipeData);
+  }
+};
+
 const viewRecipe = (event) => {
-  console.log(event.target)
   recipeData.forEach(recipe => {
     if(recipe.name === event.target.innerText){
       displayRecipe(recipe)
     }
-  });
-}
+  })
+};
 
 const displayRecipe = (recipe) => {
   recipeTitle.innerText = ''
@@ -133,16 +144,14 @@ const displayInstructions = (recipe) => {
 
 export { 
   viewAll,
-  viewAllRecipes,
-  viewSalads, 
-  viewHordoeuvres, 
-  viewMains, 
-  viewSides,
+  displayRecipes,
   viewFilteredRecipes,
   viewSearchResults, 
   filterByNameOrTag,
+  viewRecipes,
   viewRecipe,
   allRecipes,
   homeButton,
-  showHome
+  showHome,
+  categoriesContainer
 }

@@ -7,18 +7,12 @@ import './images/turing-logo.png'
 import './images/search-icon.png'
 import ingredientsData from './data/ingredients.js'
 import sampleRecipeData from './data/sample-recipes.js'
-import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains,
-   viewSides, viewFilteredRecipes, filterByNameOrTag, viewSearchResults, viewRecipe, allRecipes,
-   homeButton, showHome 
+import { filterByName, filterByTag } from './functions/filter-recipes.js'
+import recipeData from './data/recipes.js'
+import { viewRecipe, viewRecipes, viewFilteredRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
+   homeButton, showHome, categoriesContainer 
  } from './domUpdates.js'
 
-//Example of one way to import functions from the domUpdates file. You will delete these examples.
-// import {exampleFunction1, exampleFunction2} from './domUpdates.js'
-
-// exampleFunction1('heather')
-// exampleFunction2('heather')
-
-// console.log(ingredientsData)
 const setUpAllRecipes = (event) => {
   viewAllRecipes(event)
   const recipes = allRecipes()
@@ -26,6 +20,7 @@ const setUpAllRecipes = (event) => {
     recipe.addEventListener('click', viewRecipe)
   })
 }
+
 const setUpRecipes = (event) => {
   viewFilteredRecipes(event)
   const recipes = allRecipes()
@@ -33,6 +28,7 @@ const setUpRecipes = (event) => {
     recipe.addEventListener('click', viewRecipe)
   })
 }
+
 const setUpSearchedRecipes = (event) => {
   filterByNameOrTag(event)
   const recipes = allRecipes()
@@ -40,11 +36,9 @@ const setUpSearchedRecipes = (event) => {
     recipe.addEventListener('click', viewRecipe)
   })
 }
-viewAll.addEventListener('click', setUpAllRecipes)
-viewSalads.addEventListener('click', setUpRecipes)
-viewHordoeuvres.addEventListener('click', setUpRecipes)
-viewMains.addEventListener('click', setUpRecipes)
-viewSides.addEventListener('click',setUpRecipes)
+
 viewSearchResults.addEventListener('click', setUpSearchedRecipes)
 homeButton.addEventListener('click', showHome)
+
+categoriesContainer.addEventListener('click', viewRecipes)
 
