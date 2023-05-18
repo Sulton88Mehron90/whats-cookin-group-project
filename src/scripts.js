@@ -9,7 +9,7 @@ import ingredientsData from './data/ingredients.js'
 import sampleRecipeData from './data/sample-recipes.js'
 import { filterByName, filterByTag } from './functions/filter-recipes.js'
 import recipeData from './data/recipes.js'
-import { viewRecipe, viewRecipes, viewFilteredRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
+import { allContainer, viewRecipe, viewRecipes, viewFilteredRecipes, filterByNameOrTag, viewSearchResults, allRecipes,
    homeButton, showHome, categoriesContainer 
  } from './domUpdates.js'
 
@@ -39,6 +39,7 @@ const setUpSearchedRecipes = (event) => {
 
 viewSearchResults.addEventListener('click', setUpSearchedRecipes)
 homeButton.addEventListener('click', showHome)
-
-categoriesContainer.addEventListener('click', viewRecipes)
-
+categoriesContainer.addEventListener('click', viewRecipes);
+allContainer.addEventListener('click', event => {
+  console.log(event.target)
+})

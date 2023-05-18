@@ -35,6 +35,22 @@ const filterByName = (recipeData, name) => {
   return filteredRecipesByName;
 };
 
+const filterRecipes = (recipeData, filter) => {
+  const recipes = [];
+  const filteredByName = filterByName(recipeData, filter);
+  const filteredByTag = filterByTag(recipeData, filter);
+  
+  if(filteredByName !== 'No results') {
+    filteredByName.forEach(recipe => recipes.push(recipe));
+  }
+  if(filteredByTag !== 'Error: try a new tag') {
+    filteredByTag.forEach(recipe => recipes.push(recipe));
+  }
+  if(filter === 'all') {
+    recipes.push(recipeData);
+  }
+  return recipes;
+};
+  
 
-
-export { filterByTag, filterByName }
+export { filterByTag, filterByName, filterRecipes }

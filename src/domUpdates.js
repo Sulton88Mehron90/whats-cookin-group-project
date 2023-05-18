@@ -4,6 +4,7 @@ import recipeData from "./data/recipes.js"
 import { filterByTag, filterByName } from "./functions/filter-recipes.js"
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
+import { currentRecipe, currentRecipes, savedRecipes } from "./data/data-model.js";
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
@@ -126,6 +127,7 @@ const displayRecipeImg = (recipe) => {
   image.classList.add('recipe__img');
   imageContainer.appendChild(image);
 }
+
 const displayIngredients = (recipe) => {
   ingredientsEl.innerHTML = 'Ingredients:'
   const ingredientsArr = recipeIngredients(recipe.name);
@@ -153,5 +155,6 @@ export {
   allRecipes,
   homeButton,
   showHome,
-  categoriesContainer
+  categoriesContainer,
+  allContainer
 }
