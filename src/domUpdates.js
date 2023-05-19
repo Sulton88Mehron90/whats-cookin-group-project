@@ -16,6 +16,7 @@ const footerSection = document.querySelector('.footer');
 const viewSearchResults = document.querySelector('.home__searchIcon');
 const searchInput = document.querySelector('.home__searchInput');
 const allContainer = document.querySelector('.all__container');
+const allHeader = document.querySelector('.all__header');
 const recipeSection = document.querySelector('.recipe');
 const recipeTitle = document.querySelector('.recipe__title');
 const imageContainer = document.querySelector('.image__container');
@@ -56,6 +57,7 @@ const showUserPage = () => {
 const viewRecipes = (event) => {
   const target = event.target.id;
   currentRecipes = filterRecipes(recipeData, target)
+  allHeader.innerText = target;
   displayRecipes(currentRecipes)
 };
 
