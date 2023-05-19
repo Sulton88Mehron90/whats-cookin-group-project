@@ -26,6 +26,7 @@ const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
+const userRecipes = document.querySelector('.user__recipes')
 
 // DATAMODEL 
 let savedRecipes = [];
@@ -127,6 +128,26 @@ const createRandomUser = () => {
   })
 }
 
+const saveRecipe = () => {
+  recipeData.forEach(recipe=> {
+    if (recipeTitle.innerText === recipe.name) {
+      savedRecipes.push(recipe)
+      console.log(savedRecipes)
+      viewSavedRecipes(savedRecipes)
+    }
+  })
+}
+
+const viewSavedRecipes = (savedRecipes) => {
+  userRecipes.innerHTML = ''
+  savedRecipes.forEach(recipe=>
+    userRecipes.innerHTML += `
+    <div class="user__recipe">
+      <img class="user__img" src="${recipe.image}">
+      <p>${recipe.name}</p>
+    </div>`
+)}
+
 export { 
   viewAll,
   categoriesContainer,
@@ -143,5 +164,6 @@ export {
   selectRecipe,
   searchRecipes,
   createRandomUser,
-  showUserPage
+  showUserPage,
+  saveRecipe
 }
