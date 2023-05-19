@@ -43,7 +43,38 @@ const hide = (names) => {
 
 // DOM
 
-//Good
+const showHome = () => {
+  hide([allSection, homeButton, recipeSection, userSection]);
+  show([categoriesSection, footerSection, userButton]);
+};
+
+const showUserPage = () => {
+  displayRecipes(savedRecipes);
+  show([userSection, homeButton]);
+};
+
+const viewRecipes = (event) => {
+  const target = event.target.id;
+  currentRecipes = filterRecipes(recipeData, target)
+  displayRecipes(currentRecipes)
+};
+
+const viewRecipe = (recipe) => {
+  show([recipeSection]);
+  hide([allSection, userSection]);
+  const userRecipeIngredients = recipeIngredients(recipe.name)
+  userRecipeIngredients.forEach(ingredient => {
+    ingredientsDisplay.innerHTML += `
+    <p>${ingredient.name}</p>
+    <p>${ingredient.amount}</p>
+    <p>${ingredient.unit}</p>`
+  })
+  recipeTitle.innerText = recipe.name;
+  imageContainer.innerHTML = `<img src="${recipe.image}">`;
+  recipe.instructions.forEach((instruction) => instructionsDisplay.innerHTML += `<p>${instruction.number}.) ${instruction.instruction}</p>`);
+  recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
+};
+
 const displayRecipes = (recipes) => {
   allContainer.innerHTML = ''
   hide([categoriesSection, footerSection, recipeSection, userSection]);
@@ -59,6 +90,13 @@ const displayRecipes = (recipes) => {
   })
 };
 
+const selectRecipe = (event) => {
+  const target = parseInt(event.target.id);
+  const foundRecipe = recipeData.find(recipe => recipe.id === target);
+  currentRecipe = makeCurrentRecipe(foundRecipe);
+  viewRecipe(currentRecipe);
+};
+
 const searchRecipes = () => {
   currentRecipes = filterRecipes(recipeData, searchInput.value);
   if(!searchInput.value || !currentRecipes.length) {
@@ -66,60 +104,8 @@ const searchRecipes = () => {
       displayRecipes();
        `<p class='all__text'>No Results!</p>`
   } else {
- 
   displayRecipes(currentRecipes)
-
   }
-}
-
-//Good
-const showHome = () => {
-  hide([allSection, homeButton, recipeSection, userSection]);
-  show([categoriesSection, footerSection, userButton]);
-};
-
-const showUserPage = () => {
-  // hide([allSection, homeButton, recipeSection, userButton, categoriesSection, footerSection]);
-  displayRecipes(savedRecipes);
-  show([userSection, homeButton]);
-}
-
-//Good
-const viewRecipes = (event) => {
-  const target = event.target.id;
-  currentRecipes = filterRecipes(recipeData, target)
-  displayRecipes(currentRecipes)
-};
-
-// Updates Data Model
-// Move to its own file and import/export
-
-//Good
-const selectRecipe = (event) => {
-  const target = parseInt(event.target.id);
-  const foundRecipe = recipeData.find(recipe => recipe.id === target);
-  currentRecipe = makeCurrentRecipe(foundRecipe);
-
-  viewRecipe(currentRecipe);
-}
-
-//Good
-const viewRecipe = (recipe) => {
-  show([recipeSection]);
-  hide([allSection, userSection]);
-  const userRecipeIngredients = recipeIngredients(recipe.name)
-
-  userRecipeIngredients.forEach(ingredient => {
-    ingredientsDisplay.innerHTML += `
-    <p>${ingredient.name}</p>
-    <p>${ingredient.amount}</p>
-    <p>${ingredient.unit}</p>`
-  })
-  recipeTitle.innerText = recipe.name;
-  imageContainer.innerHTML = `<img src="${recipe.image}">`;
-   
-  recipe.instructions.forEach((instruction) => instructionsDisplay.innerHTML += `<p>${instruction.number}.) ${instruction.instruction}</p>`);
-  recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
 };
 
 const createRandomUser = () => {
@@ -129,15 +115,17 @@ const createRandomUser = () => {
       userName.innerText = `Welcome ${userData.name}!`
     }
   })
-}
+};
+
+// ADD/REMOVE RECIPES //
 
 const saveRecipe = () => {
   recipeData.forEach(recipe=> {
     if (recipeTitle.innerText === recipe.name) {
-      savedRecipes.push(recipe)
+      savedRecipes.push(recipe);
     }
   })
-}
+};
 
 export { 
   viewAll,

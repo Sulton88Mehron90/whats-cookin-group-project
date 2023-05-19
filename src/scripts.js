@@ -9,7 +9,7 @@ import './images/search-icon.png'
 import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
   categoriesContainer, selectRecipe, searchRecipes, saveButton, createRandomUser, userButton, saveRecipe } from './domUpdates.js'
 
-// Data Model
+// EVENT LISTENERS //
 
 viewSearchResults.addEventListener('click', searchRecipes)
 userButton.addEventListener('click', showUserPage)
