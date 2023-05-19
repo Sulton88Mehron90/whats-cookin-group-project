@@ -102,12 +102,10 @@ const viewRecipe = (recipe) => {
 };
 
 const createRandomUser = () => {
-  show([userSection, homeButton]);
-  hide([recipeSection, categoriesSection, footerSection, randomUserButton]);
   const userId = Math.floor(Math.random()*usersData.length)
   usersData.forEach(userData=> {
     if (userData.id === userId){
-      userSection.innerHTML=
+      userSection.innerText =
       `Welcome ${userData.name}`
     }
   })
