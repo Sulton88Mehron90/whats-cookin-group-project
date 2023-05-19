@@ -65,8 +65,9 @@ const viewRecipe = (recipe) => {
   const userRecipeIngredients = recipeIngredients(recipe.name)
   userRecipeIngredients.forEach(ingredient => {
     ingredientsDisplay.innerHTML += `
-    <p class= recipe__instruction> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
+    <p class= recipe__instruction style= "margin: inherit"> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
     `
+    
   })
   recipeTitle.innerText = recipe.name;
   imageContainer.innerHTML = `<img src="${recipe.image}">`;

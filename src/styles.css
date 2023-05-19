@@ -197,12 +197,18 @@ footer {
 }
 
 .recipe__left, .recipe__instructions, .recipe__img {
-  width: 50vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .recipe__instructions, .recipe__instruction, .recipe__ingredients {
 align-items: center;
 flex-direction: column;
+}
+
+.image__container {
+  display: flex;
+  flex-direction: column;
 }
 
 /* user section */
