@@ -209,7 +209,7 @@ flex-direction: column;
 
 .user__header, .user__recipes, .user__recipe, .user__hbutton, .user__header2{
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 .user__turing, .user__img, .user__icon {

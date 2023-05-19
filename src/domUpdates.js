@@ -1,6 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 import recipeData from "./data/recipes.js"
+import usersData from "./data/users.js"
 import { filterByTag, filterByName, filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
@@ -8,6 +9,7 @@ import { recipeIngredients } from "./functions/recipe-ingredients.js";
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
+const userSection = document.querySelector('.user');
 const categoriesSection = document.querySelector('.categories');
 const categoriesContainer = document.querySelector('.categories__container');
 const footerSection = document.querySelector('.footer');
@@ -22,6 +24,9 @@ const instructionsDisplay = document.querySelector('.recipe__instructions');
 const recipeCost = document.querySelector('.recipe__cost')
 const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
+const userButton = document.querySelector('.home__ubutton')
+const userName = document.querySelector('.user__name')
+
 // DATAMODEL 
 let savedRecipes = [];
 
@@ -39,7 +44,7 @@ const hide = (names) => {
 //Good
 const displayRecipes = (recipes) => {
   allContainer.innerHTML = ''
-  hide([categoriesSection, footerSection, recipeSection]);
+  hide([categoriesSection, footerSection, recipeSection, userSection]);
   show([allSection, homeButton]);
   if (!recipes) {
     return 'No results'
@@ -66,9 +71,14 @@ const searchRecipes = () => {
 
 //Good
 const showHome = () => {
-  hide([allSection, homeButton, recipeSection]);
-  show([categoriesSection, footerSection]);
+  hide([allSection, homeButton, recipeSection, userSection]);
+  show([categoriesSection, footerSection, userButton]);
 };
+
+const showUserPage = () => {
+  hide([allSection, homeButton, recipeSection, userButton, categoriesSection, footerSection]);
+  show([userSection, homeButton]);
+}
 
 //Good
 const viewRecipes = (event) => {
@@ -92,7 +102,7 @@ const selectRecipe = (event) => {
 //Good
 const viewRecipe = (recipe) => {
   show([recipeSection]);
-  hide([allSection]);
+  hide([allSection, userSection]);
   const userRecipeIngredients = recipeIngredients(recipe.name)
 
   userRecipeIngredients.forEach(ingredient => {
@@ -108,12 +118,14 @@ const viewRecipe = (recipe) => {
   recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
 };
 
-// const recipesToCook = (recipe) => {
-//   savedRecipes.push(recipe);
-// }
-
-// event listener on save recipe button that runs the recipestocook function and passes in current recipe as argument.
-
+const createRandomUser = () => {
+  const userId = Math.floor(Math.random()*usersData.length)
+  usersData.forEach(userData=> {
+    if (userData.id === userId){
+      userName.innerText = `Welcome ${userData.name}!`
+    }
+  })
+}
 
 export { 
   viewAll,
@@ -122,11 +134,14 @@ export {
   homeButton,
   viewSearchResults,
   saveButton,
+  userButton,
   displayRecipes,
   viewRecipes,
   viewRecipe,
   showHome,
   makeCurrentRecipe,
   selectRecipe,
-  searchRecipes
+  searchRecipes,
+  createRandomUser,
+  showUserPage
 }
