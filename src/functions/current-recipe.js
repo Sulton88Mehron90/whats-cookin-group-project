@@ -6,6 +6,7 @@ const makeCurrentRecipe = (recipeData) => {
   if (!recipeData) {
     return {};
   }
+  const currentRecipeIngredients = recipeIngredients(recipeData.name)
   let recipe = {
     name: recipeData.name,
     image: recipeData.image,
