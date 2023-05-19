@@ -71,7 +71,7 @@ const viewRecipe = (recipe) => {
   })
   recipeTitle.innerText = recipe.name;
   imageContainer.innerHTML = `<img src="${recipe.image}">`;
-  recipe.instructions.forEach((instruction) => instructionsDisplay.innerHTML += `<p>${instruction.number}.) ${instruction.instruction}</p>`);
+  recipe.instructions.forEach((instruction) => instructionsDisplay.innerHTML += `<p style="align-self: flex-start">${instruction.number}.) ${instruction.instruction}</p>`);
   recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
 };
 

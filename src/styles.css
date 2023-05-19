@@ -211,6 +211,10 @@ flex-direction: column;
   justify-content: center;
 }
 
+.recipe__instructions {
+  margin: 10px;
+}
+
 .image__container {
   display: flex;
   flex-direction: column;
