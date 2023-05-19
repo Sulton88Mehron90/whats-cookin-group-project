@@ -6,8 +6,8 @@ import apiCalls from './apiCalls'
 import './images/turing-logo.png'
 import './images/search-icon.png'
 // import { currentRecipe } from './data/data-model.js'
-import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
-  categoriesContainer, selectRecipe, searchRecipes, saveButton, createRandomUser, userButton, saveRecipe } from './domUpdates.js'
+import { allContainer, currentRecipes, displayRecipes, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
+  categoriesContainer, selectRecipe, searchRecipes, saveButton, createRandomUser, userButton, saveRecipe, backButton } from './domUpdates.js'
 
 // EVENT LISTENERS //
 
@@ -18,3 +18,6 @@ window.addEventListener('load', createRandomUser)
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', selectRecipe)
 saveButton.addEventListener('click', saveRecipe)
+backButton.addEventListener('click', () => {
+  displayRecipes(currentRecipes);
+})

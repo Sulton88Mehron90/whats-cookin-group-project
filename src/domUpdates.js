@@ -27,6 +27,7 @@ const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
+const backButton = document.querySelector('.recipe__back');
 
 // DATAMODEL 
 let savedRecipes = [];
@@ -96,6 +97,8 @@ const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   currentRecipe = makeCurrentRecipe(foundRecipe);
+  console.log(currentRecipe)
+  console.log(currentRecipes)
   viewRecipe(currentRecipe);
 };
 
@@ -137,6 +140,8 @@ export {
   viewSearchResults,
   saveButton,
   userButton,
+  backButton,
+  currentRecipes,
   displayRecipes,
   viewRecipes,
   viewRecipe,

@@ -229,4 +229,8 @@ flex-direction: column;
   display: none;
 }
 
+/* BUTTONS */
 
+.recipe__back, .home__button, .home__searchIcon, .recipe__sbutton {
+  cursor: pointer;
+}
