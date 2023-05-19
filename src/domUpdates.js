@@ -26,7 +26,6 @@ const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
-const userRecipes = document.querySelector('.user__recipes')
 
 // DATAMODEL 
 let savedRecipes = [];
@@ -136,14 +135,9 @@ const saveRecipe = () => {
   recipeData.forEach(recipe=> {
     if (recipeTitle.innerText === recipe.name) {
       savedRecipes.push(recipe)
-      viewSavedRecipes()
     }
   })
 }
-
-const viewSavedRecipes = () => {
-  userRecipes.innerHTML = 'Your saved recipes are:'
-};
 
 export { 
   viewAll,
