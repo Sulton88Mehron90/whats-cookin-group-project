@@ -30,6 +30,8 @@ const userRecipes = document.querySelector('.user__recipes')
 
 // DATAMODEL 
 let savedRecipes = [];
+let currentRecipe = {};
+let currentRecipes = [];
 
 // Modifiers
 const show = (names) => {
@@ -59,14 +61,15 @@ const displayRecipes = (recipes) => {
 };
 
 const searchRecipes = () => {
-  const filteredRecipes = filterRecipes(recipeData, searchInput.value);
-  if(!searchInput.value || !filteredRecipes.length) {
+  currentRecipes = filterRecipes(recipeData, searchInput.value);
+  if(!searchInput.value || !currentRecipes.length) {
     allContainer.innerHTML = 
       displayRecipes();
        `<p class='all__text'>No Results!</p>`
   } else {
  
-  displayRecipes(filteredRecipes)
+  displayRecipes(currentRecipes)
+
   }
 }
 
@@ -77,15 +80,16 @@ const showHome = () => {
 };
 
 const showUserPage = () => {
-  hide([allSection, homeButton, recipeSection, userButton, categoriesSection, footerSection]);
+  // hide([allSection, homeButton, recipeSection, userButton, categoriesSection, footerSection]);
+  displayRecipes(savedRecipes);
   show([userSection, homeButton]);
 }
 
 //Good
 const viewRecipes = (event) => {
   const target = event.target.id;
-  const filteredRecipes = filterRecipes(recipeData, target)
-  displayRecipes(filteredRecipes)
+  currentRecipes = filterRecipes(recipeData, target)
+  displayRecipes(currentRecipes)
 };
 
 // Updates Data Model
@@ -95,7 +99,7 @@ const viewRecipes = (event) => {
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
-  const currentRecipe = makeCurrentRecipe(foundRecipe);
+  currentRecipe = makeCurrentRecipe(foundRecipe);
 
   viewRecipe(currentRecipe);
 }
@@ -139,13 +143,7 @@ const saveRecipe = () => {
 
 const viewSavedRecipes = () => {
   userRecipes.innerHTML = 'Your saved recipes are:'
-  savedRecipes.forEach(recipe=>
-    userRecipes.innerHTML += `
-    <div class="user__recipe">
-      <img class="user__img" src="${recipe.image}">
-      <p>${recipe.name}</p>
-    </div>`
-)}
+};
 
 export { 
   viewAll,
