@@ -132,14 +132,13 @@ const saveRecipe = () => {
   recipeData.forEach(recipe=> {
     if (recipeTitle.innerText === recipe.name) {
       savedRecipes.push(recipe)
-      console.log(savedRecipes)
-      viewSavedRecipes(savedRecipes)
+      viewSavedRecipes()
     }
   })
 }
 
-const viewSavedRecipes = (savedRecipes) => {
-  userRecipes.innerHTML = ''
+const viewSavedRecipes = () => {
+  userRecipes.innerHTML = 'Your saved recipes are:'
   savedRecipes.forEach(recipe=>
     userRecipes.innerHTML += `
     <div class="user__recipe">
