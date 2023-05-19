@@ -5,7 +5,6 @@ import { filterByTag, filterByName, filterRecipes } from "./functions/filter-rec
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-// import { currentRecipe, currentRecipes, savedRecipes } from "./data/data-model.js";
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
@@ -22,6 +21,9 @@ const ingredientsDisplay = document.querySelector('.recipe__ingredients');
 const instructionsDisplay = document.querySelector('.recipe__instructions');
 const recipeCost = document.querySelector('.recipe__cost')
 const homeButton = document.querySelector('.home__button')
+const saveButton = document.querySelector('.recipe__sbutton');
+// DATAMODEL 
+let savedRecipes = [];
 
 // Modifiers
 const show = (names) => {
@@ -83,6 +85,7 @@ const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   const currentRecipe = makeCurrentRecipe(foundRecipe);
+
   viewRecipe(currentRecipe);
 }
 
@@ -90,12 +93,27 @@ const selectRecipe = (event) => {
 const viewRecipe = (recipe) => {
   show([recipeSection]);
   hide([allSection]);
+  const userRecipeIngredients = recipeIngredients(recipe.name)
+
+  userRecipeIngredients.forEach(ingredient => {
+    ingredientsDisplay.innerHTML += `
+    <p>${ingredient.name}</p>
+    <p>${ingredient.amount}</p>
+    <p>${ingredient.unit}</p>`
+  })
   recipeTitle.innerText = recipe.name;
   imageContainer.innerHTML = `<img src="${recipe.image}">`;
-  ingredientsDisplay.innerText = `Ingredients: ${recipe.ingredients}`; 
+   
   recipe.instructions.forEach((instruction) => instructionsDisplay.innerHTML += `<p>${instruction.number}.) ${instruction.instruction}</p>`);
   recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
 };
+
+// const recipesToCook = (recipe) => {
+//   savedRecipes.push(recipe);
+// }
+
+// event listener on save recipe button that runs the recipestocook function and passes in current recipe as argument.
+
 
 export { 
   viewAll,
@@ -103,6 +121,7 @@ export {
   allContainer,
   homeButton,
   viewSearchResults,
+  saveButton,
   displayRecipes,
   viewRecipes,
   viewRecipe,
