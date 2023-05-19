@@ -198,7 +198,7 @@ footer {
 
 .recipe__left, .recipe__instructions, .recipe__img {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .recipe__instructions, .recipe__instruction, .recipe__ingredients {
@@ -213,6 +213,8 @@ flex-direction: column;
 
 .recipe__instructions {
   margin: 10px;
+  background-color: lightblue;
+  border-radius: 1em;
 }
 
 .image__container {
