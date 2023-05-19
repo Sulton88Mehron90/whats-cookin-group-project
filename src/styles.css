@@ -206,6 +206,11 @@ align-items: center;
 flex-direction: column;
 }
 
+.recipe__cost {
+  display: flex;
+  justify-content: center;
+}
+
 .image__container {
   display: flex;
   flex-direction: column;
