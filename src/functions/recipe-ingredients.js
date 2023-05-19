@@ -3,24 +3,27 @@
 import ingredientsData from "../data/ingredients";
 import recipeData from "../data/recipes";
 
-const recipeIngredients = (recipe) => {
-  const filteredRecipe = recipeData.find(item => item.name === recipe);
+const recipeIngredients = (recipeName) => {
+  const outputArray = [];
+  const filteredRecipe = recipeData.find((recipe) => recipe.name === recipeName
+   );
+   if (!filteredRecipe){
+     return `Sorry, cannot find a recipe for ${recipeName}.`
+   }
 
-  if (!filteredRecipe) {
-    return `Sorry, cannot find a recipe for ${recipe}.`;
-  }
-
-  const ingredientIds = filteredRecipe.ingredients.map(ingredient => ingredient.id);
-
-  const ingredientObjects = ingredientIds.map(ingredientId => {
-    return ingredientsData.find(ingredient => ingredient.id === ingredientId);
-  });
-
-  const ingredientStrings = ingredientObjects.map(object => object.name);
-
-  return ingredientStrings;
-};
-
-
+   filteredRecipe.ingredients.forEach(recipeIngredient => {
+    ingredientsData.forEach(ingredient => {
+      if (recipeIngredient.id === ingredient.id) {
+        let output = {};
+        output.name = ingredient.name;
+        output.amount = recipeIngredient.quantity.amount;
+        output.unit = recipeIngredient.quantity.unit;
+        output.cost = ingredient.estimatedCostInCents;
+        outputArray.push(output);
+      }
+    })
+  })
+  return outputArray;
+}
 
 export { recipeIngredients };
