@@ -6,14 +6,15 @@ import apiCalls from './apiCalls'
 import './images/turing-logo.png'
 import './images/search-icon.png'
 // import { currentRecipe } from './data/data-model.js'
-import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, categoriesContainer, selectRecipe, searchRecipes } from './domUpdates.js'
+import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, categoriesContainer, selectRecipe, searchRecipes, saveButton } from './domUpdates.js'
 
 // Data Model
-
+let currentRecipe = {};
 
 viewSearchResults.addEventListener('click', searchRecipes)
 homeButton.addEventListener('click', showHome)
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', selectRecipe)
-
-
+saveButton.addEventListener('click', () => {
+  recipesToCook(currentRecipe)
+})

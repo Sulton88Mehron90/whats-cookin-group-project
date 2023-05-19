@@ -13,7 +13,7 @@ const calculateCost = (recipe) => {
   recipeIngredients.forEach((recipeIngredient) => {
     ingredientsData.forEach((ingredient) => {
       if (ingredient.id === recipeIngredient.id){
-        costs.push(recipeIngredient.quantity.amount * (ingredient.estimatedCostInCents / 1000))
+        costs.push(recipeIngredient.quantity.amount * (ingredient.estimatedCostInCents / 100))
       }
     })
   })
