@@ -1,6 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 import recipeData from "./data/recipes.js"
+import usersData from "./data/users.js"
 import { filterByTag, filterByName, filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
@@ -9,6 +10,7 @@ import { recipeIngredients } from "./functions/recipe-ingredients.js";
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
+const userSection = document.querySelector('.user');
 const categoriesSection = document.querySelector('.categories');
 const categoriesContainer = document.querySelector('.categories__container');
 const footerSection = document.querySelector('.footer');
@@ -22,6 +24,8 @@ const ingredientsDisplay = document.querySelector('.recipe__ingredients');
 const instructionsDisplay = document.querySelector('.recipe__instructions');
 const recipeCost = document.querySelector('.recipe__cost')
 const homeButton = document.querySelector('.home__button')
+const userButton = document.querySelector('.home__ubutton')
+const randomUserButton = document.querySelector('.home__rubutton')
 
 // Modifiers
 const show = (names) => {
@@ -65,7 +69,7 @@ const searchRecipes = () => {
 //Good
 const showHome = () => {
   hide([allSection, homeButton, recipeSection]);
-  show([categoriesSection, footerSection]);
+  show([categoriesSection, footerSection, userButton]);
 };
 
 //Good
@@ -89,7 +93,7 @@ const selectRecipe = (event) => {
 //Good
 const viewRecipe = (recipe) => {
   show([recipeSection]);
-  hide([allSection]);
+  hide([allSection, ]);
   recipeTitle.innerText = recipe.name;
   imageContainer.innerHTML = `<img src="${recipe.image}">`;
   ingredientsDisplay.innerText = `Ingredients: ${recipe.ingredients}`; 
@@ -97,17 +101,31 @@ const viewRecipe = (recipe) => {
   recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
 };
 
+const createRandomUser = () => {
+  show([userSection, homeButton]);
+  hide([recipeSection, categoriesSection, footerSection, randomUserButton]);
+  const userId = Math.floor(Math.random()*usersData.length)
+  usersData.forEach(userData=> {
+    if (userData.id === userId){
+      userSection.innerHTML=
+      `Welcome ${userData.name}`
+    }
+  })
+}
+
 export { 
   viewAll,
   categoriesContainer,
   allContainer,
   homeButton,
   viewSearchResults,
+  randomUserButton,
   displayRecipes,
   viewRecipes,
   viewRecipe,
   showHome,
   makeCurrentRecipe,
   selectRecipe,
-  searchRecipes
+  searchRecipes,
+  createRandomUser
 }
