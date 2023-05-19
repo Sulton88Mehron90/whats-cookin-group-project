@@ -53,6 +53,7 @@ const showHome = () => {
 const showUserPage = () => {
   displayRecipes(savedRecipes);
   show([userSection, homeButton]);
+  hide([allHeader, backButton])
 };
 
 const viewRecipes = (event) => {
@@ -60,6 +61,7 @@ const viewRecipes = (event) => {
   currentRecipes = filterRecipes(recipeData, target)
   allHeader.innerText = target;
   displayRecipes(currentRecipes)
+  show([backButton])
 };
 
 const viewRecipe = (recipe) => {
