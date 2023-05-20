@@ -71,8 +71,7 @@ const viewRecipe = (recipe) => {
   userRecipeIngredients.forEach(ingredient => {
     ingredientsDisplay.innerHTML += `
     <p class= recipe__instruction style= "margin: inherit"> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
-    `
-    
+    ` 
   })
   recipeTitle.innerText = recipe.name;
   imageContainer.innerHTML = `<img style= "margin: 2em;border-radius: 1.5625em" src="${recipe.image}">`;
@@ -99,6 +98,8 @@ const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   currentRecipe = makeCurrentRecipe(foundRecipe);
+  ingredientsDisplay.innerHTML = " ";
+  instructionsDisplay.innerHTML = " ";
   viewRecipe(currentRecipe);
 };
 
