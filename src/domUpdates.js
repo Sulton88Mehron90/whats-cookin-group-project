@@ -127,9 +127,17 @@ const saveRecipe = () => {
   })
 };
 
-// const deleteRecipe = () => {
-//   if (blur) {}
-// }
+const deleteRecipe = () => {
+  console.log('wazzzup')
+  console.log(event.target.id)
+  recipeData.forEach(recipe=> {
+    console.log(recipe.id)
+    // if (event.target.id === recipe.id) {
+    //   console.log("this delete works!")
+    //   // savedRecipes.splice();
+    // }
+  })
+}
 
 export { 
   viewAll,
@@ -139,6 +147,7 @@ export {
   viewSearchResults,
   saveButton,
   userButton,
+  deleteRecipe,
   displayRecipes,
   viewRecipes,
   viewRecipe,
