@@ -44,11 +44,11 @@ What's Cookin'? is a group project completed as a part of Module 2 at Turing Sch
 
 ## SET UP/INSTALLATION
 
-Fork this repository [here](https://github.com/JamieCaudill/whats-cookin-group-project)
-Clone down your new, forked repo
-cd into the repository
-Open it in your text editor
-View the project in the browser by running `npm start` in your terminal, and cmd + click on the link generated
+1. Fork this repository [here](https://github.com/JamieCaudill/whats-cookin-group-project)
+1. Clone down your new, forked repo
+1. cd into the repository
+1. Open it in your text editor
+1. View the project in the browser by running `npm start` in your terminal, and cmd + click on the link generated
 
 ## Testing
 
