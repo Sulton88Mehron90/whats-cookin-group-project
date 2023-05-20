@@ -169,10 +169,9 @@ footer {
 
 /* recipe section */
 
-.recipe__header, .recipe__header2, .recipe__main {
-  /* width: 100vw; */
+.recipe__header, .recipe__main {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
