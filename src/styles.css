@@ -52,7 +52,7 @@ h1 {
   margin: 1em;
 }
 
-.home__searchIcon{
+.home__searchIcon, .user__searchIcon{
   height: 1.5em;
   border-radius: 100em;
   margin-right: 1em;
@@ -240,12 +240,16 @@ flex-direction: column;
   background-color: rgb(133, 38, 38);
   color: white;
   border-radius: 1em;
-
 }
 
 .user__recipes {
   flex-direction: column;
   align-items: center;
+}
+
+.user__search {
+  margin: 1em;
+  margin-right: 0;
 }
 
 /* hidden section */
@@ -256,7 +260,7 @@ flex-direction: column;
 
 /* BUTTONS */
 
-.recipe__back, .home__button, .home__searchIcon, .recipe__sbutton {
+.recipe__back, .home__button, .home__searchIcon, .recipe__sbutton, .user__searchIcon {
   cursor: pointer;
 }
 
