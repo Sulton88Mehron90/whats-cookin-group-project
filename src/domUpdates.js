@@ -128,7 +128,7 @@ const createRandomUser = () => {
 
 const saveRecipe = () => {
   recipeData.forEach(recipe=> {
-    if (recipeTitle.innerText === recipe.name) {
+    if (recipeTitle.innerText === recipe.name && !savedRecipes.includes(recipe)) {
       savedRecipes.push(recipe);
     }
   })
