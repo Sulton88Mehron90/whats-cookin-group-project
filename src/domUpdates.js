@@ -59,6 +59,9 @@ const showUserPage = () => {
 const viewRecipes = (event) => {
   const target = event.target.id;
   currentRecipes = filterRecipes(recipeData, target)
+  if (!currentRecipes.length) {
+    return null;
+  }
   allHeader.innerText = target;
   displayRecipes(currentRecipes)
   show([backButton])
@@ -97,7 +100,11 @@ const displayRecipes = (recipes) => {
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
+  if (!foundRecipe) {
+    return null;
+  }
   currentRecipe = makeCurrentRecipe(foundRecipe);
+  console.log(currentRecipe)
   ingredientsDisplay.innerHTML = " ";
   instructionsDisplay.innerHTML = " ";
   viewRecipe(currentRecipe);
@@ -125,6 +132,7 @@ const createRandomUser = () => {
 
 // ADD/REMOVE RECIPES //
 
+// This function should have its own file and own test suite
 const saveRecipe = () => {
   recipeData.forEach(recipe=> {
     if (recipeTitle.innerText === recipe.name && !savedRecipes.includes(recipe)) {

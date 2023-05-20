@@ -49,6 +49,9 @@ const filterRecipes = (recipeData, filter) => {
   if(filter === 'all') {
     recipeData.forEach(recipe => recipes.push(recipe));
   }
+  if (!filter) {
+    return [];
+  }
   let uniqueRecipes = [... new Set(recipes)];
   return uniqueRecipes;
 };
