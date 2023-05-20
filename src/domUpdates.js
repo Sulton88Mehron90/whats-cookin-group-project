@@ -27,6 +27,7 @@ const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
+const userRecipes = document.querySelector('.user__recipes')
 const backButton = document.querySelector('.recipe__back');
 const userSearchIcon = document.querySelector('.user__searchIcon')
 const userSearchInput = document.querySelector('.user__search')
@@ -61,6 +62,9 @@ const showUserPage = () => {
 const viewRecipes = (event) => {
   const target = event.target.id;
   currentRecipes = filterRecipes(recipeData, target)
+  if (!currentRecipes.length) {
+    return null;
+  }
   allHeader.innerText = target;
   displayRecipes(currentRecipes)
   show([backButton])
@@ -73,13 +77,12 @@ const viewRecipe = (recipe) => {
   userRecipeIngredients.forEach(ingredient => {
     ingredientsDisplay.innerHTML += `
     <p class= recipe__instruction style= "margin: inherit"> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
-    `
-    
+    ` 
   })
   recipeTitle.innerText = recipe.name;
-  imageContainer.innerHTML = `<img style= "margin: 2em;border-radius: 25px" src="${recipe.image}">`;
+  imageContainer.innerHTML = `<img style= "margin: 2em;border-radius: 1.5625em" src="${recipe.image}">`;
   recipe.instructions.forEach((instruction) => instructionsDisplay.innerHTML += `<p style="align-self: flex-start;margin: 1em">${instruction.number}.) ${instruction.instruction}</p>`);
-  recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
+  recipeCost.innerHTML = `<p> estimated cost of ingredients: ${recipe.cost}</p>`;
 };
 
 const displayRecipes = (recipes) => {
@@ -100,9 +103,13 @@ const displayRecipes = (recipes) => {
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
+  if (!foundRecipe) {
+    return null;
+  }
   currentRecipe = makeCurrentRecipe(foundRecipe);
   console.log(currentRecipe)
-  console.log(currentRecipes)
+  ingredientsDisplay.innerHTML = " ";
+  instructionsDisplay.innerHTML = " ";
   viewRecipe(currentRecipe);
 };
 
@@ -120,7 +127,7 @@ const searchRecipes = () => {
 const createRandomUser = () => {
   const userId = Math.floor(Math.random()*usersData.length)
   usersData.forEach(userData=> {
-    if (userData.id === userId){
+    if (userData.id === userId) {
       userName.innerText = `Welcome ${userData.name}!`
     }
   })
@@ -128,13 +135,29 @@ const createRandomUser = () => {
 
 // ADD/REMOVE RECIPES //
 
+// This function should have its own file and own test suite
 const saveRecipe = () => {
-  recipeData.forEach(recipe=> {
-    if (recipeTitle.innerText === recipe.name && !savedRecipes.includes(recipe)) {
-      savedRecipes.push(recipe);
+  userRecipes.innerHTML = 'Select recipe to view or right click to delete.'
+  const newRecipe = recipeData.filter((filteredRecipe)=> {
+    return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
+    const modifiedRecipe = newRecipe.map(modifiedRecipe=> {
+      modifiedRecipe.id = Date.now()
+      return modifiedRecipe
+    }) 
+    return savedRecipes.push(...modifiedRecipe)
+  }
+
+
+const deleteRecipe = (event) => {
+  savedRecipes.forEach(savedRecipe=> {
+    if (parseInt(event.target.id) === savedRecipe.id) {
+      let recipeIndex = savedRecipes.indexOf(savedRecipe)
+      savedRecipes.splice(recipeIndex, 1);
+      displayRecipes(savedRecipes)
+      show([userSection])
     }
   })
-};
+}
 
 export { 
   viewAll,
@@ -146,6 +169,7 @@ export {
   userButton,
   backButton,
   currentRecipes,
+  deleteRecipe,
   displayRecipes,
   viewRecipes,
   viewRecipe,
