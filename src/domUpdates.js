@@ -75,9 +75,9 @@ const viewRecipe = (recipe) => {
     
   })
   recipeTitle.innerText = recipe.name;
-  imageContainer.innerHTML = `<img style= "margin: 2em;border-radius: 25px" src="${recipe.image}">`;
+  imageContainer.innerHTML = `<img style= "margin: 2em;border-radius: 1.5625em" src="${recipe.image}">`;
   recipe.instructions.forEach((instruction) => instructionsDisplay.innerHTML += `<p style="align-self: flex-start;margin: 1em">${instruction.number}.) ${instruction.instruction}</p>`);
-  recipeCost.innerHTML = `<p>${recipe.cost}</p>`;
+  recipeCost.innerHTML = `<p> estimated cost of ingredients: ${recipe.cost}</p>`;
 };
 
 const displayRecipes = (recipes) => {
