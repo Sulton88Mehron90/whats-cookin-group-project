@@ -197,12 +197,37 @@ footer {
 }
 
 .recipe__left, .recipe__instructions, .recipe__img {
-  width: 50vh;
+  width: 100vw;
 }
 
 .recipe__instructions, .recipe__instruction, .recipe__ingredients {
 align-items: center;
 flex-direction: column;
+}
+
+.recipe__cost {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  background-color: lightblue;
+  border-radius: 1em
+}
+
+.recipe__instructions {
+  margin-right: 30px;
+  background-color: lightblue;
+  border-radius: 1em;
+}
+.recipe__ingredients {
+  margin-left: 30px;
+  margin-right:30px;
+  background-color: lightblue;
+  border-radius: 1em
+}
+
+.image__container {
+  display: flex;
+  flex-direction: column;
 }
 
 /* user section */
