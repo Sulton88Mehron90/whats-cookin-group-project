@@ -259,3 +259,7 @@ flex-direction: column;
 .recipe__back, .home__button, .home__searchIcon, .recipe__sbutton {
   cursor: pointer;
 }
+
+.recipe__back:hover, .home__button:hover, .recipe__sbutton:hover, .user__hbutton:hover, .home__ubutton:hover {
+  background-color:rgb(241, 167, 167)
+}
