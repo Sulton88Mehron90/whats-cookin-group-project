@@ -16,6 +16,7 @@ const footerSection = document.querySelector('.footer');
 const viewSearchResults = document.querySelector('.home__searchIcon');
 const searchInput = document.querySelector('.home__searchInput');
 const allContainer = document.querySelector('.all__container');
+const allHeader = document.querySelector('.all__header');
 const recipeSection = document.querySelector('.recipe');
 const recipeTitle = document.querySelector('.recipe__title');
 const imageContainer = document.querySelector('.image__container');
@@ -26,6 +27,7 @@ const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
+const backButton = document.querySelector('.recipe__back');
 
 // DATAMODEL 
 let savedRecipes = [];
@@ -51,12 +53,15 @@ const showHome = () => {
 const showUserPage = () => {
   displayRecipes(savedRecipes);
   show([userSection, homeButton]);
+  hide([allHeader, backButton])
 };
 
 const viewRecipes = (event) => {
   const target = event.target.id;
   currentRecipes = filterRecipes(recipeData, target)
+  allHeader.innerText = target;
   displayRecipes(currentRecipes)
+  show([backButton])
 };
 
 const viewRecipe = (recipe) => {
@@ -94,6 +99,8 @@ const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   currentRecipe = makeCurrentRecipe(foundRecipe);
+  console.log(currentRecipe)
+  console.log(currentRecipes)
   viewRecipe(currentRecipe);
 };
 
@@ -121,7 +128,7 @@ const createRandomUser = () => {
 
 const saveRecipe = () => {
   recipeData.forEach(recipe=> {
-    if (recipeTitle.innerText === recipe.name) {
+    if (recipeTitle.innerText === recipe.name && !savedRecipes.includes(recipe)) {
       savedRecipes.push(recipe);
     }
   })
@@ -135,6 +142,8 @@ export {
   viewSearchResults,
   saveButton,
   userButton,
+  backButton,
+  currentRecipes,
   displayRecipes,
   viewRecipes,
   viewRecipe,
