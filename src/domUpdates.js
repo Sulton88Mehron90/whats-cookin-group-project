@@ -128,9 +128,9 @@ const createRandomUser = () => {
 
 const saveRecipe = () => {
   userRecipes.innerHTML = 'Select recipe to view or right click to delete.'
-  let newRecipe = recipeData.filter(recipe=> {
-    return recipe.name === recipeTitle.innerText && !savedRecipes.includes(recipe)})
-  let modifiedRecipe = newRecipe.map(modifiedRecipe=> {
+  const newRecipe = recipeData.filter((filteredRecipe)=> {
+    return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
+    const modifiedRecipe = newRecipe.map(modifiedRecipe=> {
       modifiedRecipe.id = Date.now()
       return modifiedRecipe
     }) 
