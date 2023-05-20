@@ -27,6 +27,7 @@ const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
+const userRecipes = document.querySelector('.user__recipes')
 const backButton = document.querySelector('.recipe__back');
 
 // DATAMODEL 
@@ -99,8 +100,6 @@ const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   currentRecipe = makeCurrentRecipe(foundRecipe);
-  console.log(currentRecipe)
-  console.log(currentRecipes)
   viewRecipe(currentRecipe);
 };
 
@@ -127,22 +126,25 @@ const createRandomUser = () => {
 // ADD/REMOVE RECIPES //
 
 const saveRecipe = () => {
-  recipeData.forEach(recipe=> {
-    if (recipeTitle.innerText === recipe.name && !savedRecipes.includes(recipe)) {
-      savedRecipes.push(recipe);
-    }
-  })
-};
+  userRecipes.innerHTML = 'Select recipe to view or right click to delete.'
+  let newRecipe = recipeData.filter(recipe=> {
+    return recipe.name === recipeTitle.innerText && !savedRecipes.includes(recipe)})
+  let modifiedRecipe = newRecipe.map(modifiedRecipe=> {
+      modifiedRecipe.id = Date.now()
+      return modifiedRecipe
+    }) 
+    return savedRecipes.push(...modifiedRecipe)
+  }
 
-const deleteRecipe = () => {
-  console.log('wazzzup')
-  console.log(event.target.id)
-  recipeData.forEach(recipe=> {
-    console.log(recipe.id)
-    // if (event.target.id === recipe.id) {
-    //   console.log("this delete works!")
-    //   // savedRecipes.splice();
-    // }
+
+const deleteRecipe = (event) => {
+  savedRecipes.forEach(savedRecipe=> {
+    if (parseInt(event.target.id) === savedRecipe.id) {
+      let recipeIndex = savedRecipes.indexOf(savedRecipe)
+      savedRecipes.splice(recipeIndex, 1);
+      displayRecipes(savedRecipes)
+      show([userSection])
+    }
   })
 }
 
