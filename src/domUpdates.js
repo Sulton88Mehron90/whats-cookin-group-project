@@ -27,6 +27,7 @@ const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
+const userRecipes = document.querySelector('.user__recipes')
 const backButton = document.querySelector('.recipe__back');
 
 // DATAMODEL 
@@ -134,12 +135,27 @@ const createRandomUser = () => {
 
 // This function should have its own file and own test suite
 const saveRecipe = () => {
-  recipeData.forEach(recipe=> {
-    if (recipeTitle.innerText === recipe.name && !savedRecipes.includes(recipe)) {
-      savedRecipes.push(recipe);
+  userRecipes.innerHTML = 'Select recipe to view or right click to delete.'
+  const newRecipe = recipeData.filter((filteredRecipe)=> {
+    return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
+    const modifiedRecipe = newRecipe.map(modifiedRecipe=> {
+      modifiedRecipe.id = Date.now()
+      return modifiedRecipe
+    }) 
+    return savedRecipes.push(...modifiedRecipe)
+  }
+
+
+const deleteRecipe = (event) => {
+  savedRecipes.forEach(savedRecipe=> {
+    if (parseInt(event.target.id) === savedRecipe.id) {
+      let recipeIndex = savedRecipes.indexOf(savedRecipe)
+      savedRecipes.splice(recipeIndex, 1);
+      displayRecipes(savedRecipes)
+      show([userSection])
     }
   })
-};
+}
 
 export { 
   viewAll,
@@ -151,6 +167,7 @@ export {
   userButton,
   backButton,
   currentRecipes,
+  deleteRecipe,
   displayRecipes,
   viewRecipes,
   viewRecipe,
