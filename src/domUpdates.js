@@ -100,16 +100,23 @@ const viewRecipe = (recipe) => {
 
 const displayRecipes = (recipes, container) => {
   container.innerHTML = ''
-  // hide([categoriesSection, footerSection, recipeSection, userSection]);
-  // show([allSection, homeButton]);
   if (!recipes) {
     return 'No results'
   }
   recipes.forEach(recipe => {
+    if (container !== userRecipes) {
     container.innerHTML += 
     `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
       <p class='all__text' id="${recipe.id}">${recipe.name}</p>
     </div>`
+    } else {
+      container.innerHTML += 
+    `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
+      <p class='all__text' id="${recipe.id}">${recipe.name}</p>
+    </div>
+    <button>Delete</button>`
+    }
+    
   })
 };
 
