@@ -99,8 +99,6 @@ const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   currentRecipe = makeCurrentRecipe(foundRecipe);
-  console.log(currentRecipe)
-  console.log(currentRecipes)
   viewRecipe(currentRecipe);
 };
 
@@ -118,7 +116,7 @@ const searchRecipes = () => {
 const createRandomUser = () => {
   const userId = Math.floor(Math.random()*usersData.length)
   usersData.forEach(userData=> {
-    if (userData.id === userId){
+    if (userData.id === userId) {
       userName.innerText = `Welcome ${userData.name}!`
     }
   })
