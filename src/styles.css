@@ -170,9 +170,8 @@ footer {
 /* recipe section */
 
 .recipe__header, .recipe__main {
-  /* width: 100vw; */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -203,19 +202,19 @@ flex-direction: column;
 .recipe__cost {
   display: flex;
   justify-content: center;
-  margin: 30px;
+  margin: 1.875em;
   background-color: lightblue;
   border-radius: 1em
 }
 
 .recipe__instructions {
-  margin-right: 30px;
+  margin-right: 1.875em;
   background-color: lightblue;
   border-radius: 1em;
 }
 .recipe__ingredients {
-  margin-left: 30px;
-  margin-right:30px;
+  margin-left: 1.875em;
+  margin-right:1.875em;
   background-color: lightblue;
   border-radius: 1em
 }
