@@ -29,11 +29,13 @@ const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
 const userRecipes = document.querySelector('.user__recipes')
 const backButton = document.querySelector('.recipe__back');
+const userSearchIcon = document.querySelector('.user__searchIcon')
+const userSearchInput = document.querySelector('.user__search')
 
 // DATAMODEL 
 let savedRecipes = [];
 let currentRecipe = {};
-let currentRecipes = [];
+let currentRecipes = recipeData;
 
 // Modifiers
 const show = (names) => {
@@ -52,10 +54,21 @@ const showHome = () => {
 };
 
 const showUserPage = () => {
-  displayRecipes(savedRecipes);
+  displayRecipes(savedRecipes, userRecipes);
   show([userSection, homeButton]);
-  hide([allHeader, backButton])
+  hide([categoriesSection, footerSection, recipeSection, allSection])
 };
+
+const showFilteredRecipes = () => {
+  hide([categoriesSection, footerSection, recipeSection, userSection]);
+  show([allSection, homeButton]);
+}
+
+const backFilteredRecipes = () => {
+    displayRecipes(currentRecipes, allContainer);
+    hide([categoriesSection, footerSection, recipeSection, userSection]);
+    show([allSection, homeButton]);
+}
 
 const viewRecipes = (event) => {
   const target = event.target.id;
@@ -64,7 +77,9 @@ const viewRecipes = (event) => {
     return null;
   }
   allHeader.innerText = target;
-  displayRecipes(currentRecipes)
+  displayRecipes(currentRecipes, allContainer)
+  hide([categoriesSection, footerSection, recipeSection, userSection]);
+  show([allSection, homeButton]);
   show([backButton])
 };
 
@@ -83,18 +98,25 @@ const viewRecipe = (recipe) => {
   recipeCost.innerHTML = `<p> estimated cost of ingredients: ${recipe.cost}</p>`;
 };
 
-const displayRecipes = (recipes) => {
-  allContainer.innerHTML = ''
-  hide([categoriesSection, footerSection, recipeSection, userSection]);
-  show([allSection, homeButton]);
+const displayRecipes = (recipes, container) => {
+  container.innerHTML = ''
   if (!recipes) {
     return 'No results'
   }
   recipes.forEach(recipe => {
-    allContainer.innerHTML += 
+    if (container !== userRecipes) {
+    container.innerHTML += 
     `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
       <p class='all__text' id="${recipe.id}">${recipe.name}</p>
     </div>`
+    } else {
+      container.innerHTML += 
+    `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
+      <p class='all__text' id="${recipe.id}">${recipe.name}</p>
+    </div>
+    <button>Delete</button>`
+    }
+    
   })
 };
 
@@ -111,14 +133,17 @@ const selectRecipe = (event) => {
   viewRecipe(currentRecipe);
 };
 
-const searchRecipes = () => {
-  currentRecipes = filterRecipes(recipeData, searchInput.value);
-  if(!searchInput.value || !currentRecipes.length) {
-    allContainer.innerHTML = 
-      displayRecipes();
+const searchRecipes = (recipes, searcher, container) => {
+  recipes = filterRecipes(recipes, searcher.value);
+  console.log(recipes)
+  if(!searcher.value || !recipes.length) {
+    container.innerHTML = 
+      displayRecipes(recipes, container);
        `<p class='all__text'>No Results!</p>`
   } else {
-  displayRecipes(currentRecipes)
+  displayRecipes(recipes, container)
+  console.log(recipes)
+  console.log(container)
   }
 };
 
@@ -151,11 +176,20 @@ const deleteRecipe = (event) => {
     if (parseInt(event.target.id) === savedRecipe.id) {
       let recipeIndex = savedRecipes.indexOf(savedRecipe)
       savedRecipes.splice(recipeIndex, 1);
-      displayRecipes(savedRecipes)
+      displayRecipes(savedRecipes, userRecipes)
       show([userSection])
     }
   })
 }
+
+
+// Search user recipes
+// Event listener on user search icon
+  // Use search input to filter user recipes
+  // return filtered saved recipes on user page
+
+
+
 
 export { 
   viewAll,
@@ -167,6 +201,11 @@ export {
   userButton,
   backButton,
   currentRecipes,
+  savedRecipes,
+  userSearchIcon,
+  userSearchInput,
+  userRecipes,
+  searchInput,
   deleteRecipe,
   displayRecipes,
   viewRecipes,
@@ -177,5 +216,7 @@ export {
   searchRecipes,
   createRandomUser,
   showUserPage,
-  saveRecipe
+  saveRecipe,
+  backFilteredRecipes,
+  showFilteredRecipes
 }
