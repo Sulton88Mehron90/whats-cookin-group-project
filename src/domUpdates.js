@@ -99,6 +99,8 @@ const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   currentRecipe = makeCurrentRecipe(foundRecipe);
+  ingredientsDisplay.innerHTML = " ";
+  instructionsDisplay.innerHTML = " ";
   viewRecipe(currentRecipe);
 };
 
