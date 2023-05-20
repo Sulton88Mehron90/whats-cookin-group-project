@@ -28,6 +28,8 @@ const saveButton = document.querySelector('.recipe__sbutton');
 const userButton = document.querySelector('.home__ubutton')
 const userName = document.querySelector('.user__name')
 const backButton = document.querySelector('.recipe__back');
+const userSearchIcon = document.querySelector('.user__searchIcon')
+const userSearchInput = document.querySelector('.user__search')
 
 // DATAMODEL 
 let savedRecipes = [];
