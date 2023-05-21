@@ -114,7 +114,7 @@ const displayRecipes = (recipes, container) => {
     `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
       <p class='all__text' id="${recipe.id}">${recipe.name}</p>
     </div>
-    <button class="delete__button" id=${recipe.id}>Delete</button>`
+    <button class="delete__button" id=${recipe.id}>X</button>`
 
     }
     
