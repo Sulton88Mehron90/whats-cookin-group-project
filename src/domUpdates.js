@@ -114,7 +114,8 @@ const displayRecipes = (recipes, container) => {
     `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
       <p class='all__text' id="${recipe.id}">${recipe.name}</p>
     </div>
-    <button>Delete</button>`
+    <button class="delete__button" id=${recipe.id}>Delete</button>`
+
     }
     
   })
@@ -122,12 +123,15 @@ const displayRecipes = (recipes, container) => {
 
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
+  if(event.target.classList.contains('delete__button')) {
+    deleteRecipe(event)
+    return;
+  }
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   if (!foundRecipe) {
     return null;
   }
   currentRecipe = makeCurrentRecipe(foundRecipe);
-  console.log(currentRecipe)
   ingredientsDisplay.innerHTML = " ";
   instructionsDisplay.innerHTML = " ";
   viewRecipe(currentRecipe);
@@ -135,15 +139,12 @@ const selectRecipe = (event) => {
 
 const searchRecipes = (recipes, searcher, container) => {
   recipes = filterRecipes(recipes, searcher.value);
-  console.log(recipes)
   if(!searcher.value || !recipes.length) {
     container.innerHTML = 
       displayRecipes(recipes, container);
        `<p class='all__text'>No Results!</p>`
   } else {
   displayRecipes(recipes, container)
-  console.log(recipes)
-  console.log(container)
   }
 };
 
@@ -164,7 +165,7 @@ const saveRecipe = () => {
   const newRecipe = recipeData.filter((filteredRecipe)=> {
     return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
     const modifiedRecipe = newRecipe.map(modifiedRecipe=> {
-      modifiedRecipe.id = Date.now()
+      // modifiedRecipe.id = Date.now()
       return modifiedRecipe
     }) 
     return savedRecipes.push(...modifiedRecipe)
@@ -172,12 +173,12 @@ const saveRecipe = () => {
 
 
 const deleteRecipe = (event) => {
+  const target = (event.target.class);
   savedRecipes.forEach(savedRecipe=> {
     if (parseInt(event.target.id) === savedRecipe.id) {
       let recipeIndex = savedRecipes.indexOf(savedRecipe)
       savedRecipes.splice(recipeIndex, 1);
       displayRecipes(savedRecipes, userRecipes)
-      show([userSection])
     }
   })
 }
