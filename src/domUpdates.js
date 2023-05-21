@@ -30,7 +30,7 @@ const userName = document.querySelector('.user__name')
 const userRecipes = document.querySelector('.user__recipes')
 const backButton = document.querySelector('.recipe__back');
 const userSearchIcon = document.querySelector('.user__searchIcon')
-const userSearchInput = document.querySelector('.user__search')
+const userSearchInput = document.querySelector('.user__search__input')
 
 // DATAMODEL 
 let savedRecipes = [];
@@ -168,9 +168,8 @@ const saveRecipe = () => {
       // modifiedRecipe.id = Date.now()
       return modifiedRecipe
     }) 
-    return savedRecipes.push(...modifiedRecipe)
-  }
-
+  return savedRecipes.push(...modifiedRecipe)
+}
 
 const deleteRecipe = (event) => {
   const target = (event.target.class);
@@ -182,15 +181,6 @@ const deleteRecipe = (event) => {
     }
   })
 }
-
-
-// Search user recipes
-// Event listener on user search icon
-  // Use search input to filter user recipes
-  // return filtered saved recipes on user page
-
-
-
 
 export { 
   viewAll,

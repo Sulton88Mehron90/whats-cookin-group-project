@@ -28,5 +28,3 @@ userRecipes.addEventListener('click', selectRecipe)
 userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
 })
-
-userRecipes.addEventListener('contextmenu', deleteRecipe)
