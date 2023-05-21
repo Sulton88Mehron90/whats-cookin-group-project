@@ -152,7 +152,7 @@ const createRandomUser = () => {
   const userId = Math.floor(Math.random()*usersData.length)
   usersData.forEach(userData=> {
     if (userData.id === userId) {
-      userName.innerText = `Welcome ${userData.name}!`
+      userButton.innerText = `${userData.name}`
     }
   })
 };
