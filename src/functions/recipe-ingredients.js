@@ -3,12 +3,13 @@
 // import ingredientsData from "../data/ingredients";
 import { recipeData, ingredientsData } from "../apiCalls"
 
-const recipeIngredients = (recipeName) => {
-  
+const recipeIngredients = (recipeName, recipeData, ingredientsData) => {
   const outputArray = [];
+  // console.log(recipeData)
+  const filteredRecipe = recipeData.find((recipe) => {
+    return recipe.name === recipeName
+  })
 
-  const filteredRecipe = recipeData.find((recipe) => recipe.name === recipeName
-   );
    if (!filteredRecipe){
      return `Sorry, cannot find a recipe for ${recipeName}.`
    }
