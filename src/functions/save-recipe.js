@@ -1,6 +1,5 @@
 // imported data
 import sampleRecipeData from '../data/sample-recipes';
-console.log(sampleRecipeData)
 let recipeData = sampleRecipeData
 
 // sample querrySelector
