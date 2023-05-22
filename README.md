@@ -36,6 +36,7 @@ What's Cookin'? is a group project completed as a part of Module 2 at Turing Sch
 ## APP PREVIEW
 <!-- INSERT GIFS/SCREENSHOTS -->
 
+
 ## CONTRIBUTORS
 [Benjamin Holden](https://github.com/BenHolden010)
 [Jamie Caudill](https://github.com/JamieCaudill)

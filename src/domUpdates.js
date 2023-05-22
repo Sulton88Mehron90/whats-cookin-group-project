@@ -6,6 +6,7 @@ import { filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
 import { recipeData, usersData, ingredientsData } from './apiCalls'
+import { saveRecipe } from './functions/save-recipe.js'
 
 // QUERY SELECTORS //
 
@@ -160,12 +161,12 @@ const createRandomUser = () => {
 
 // ADD/REMOVE RECIPES //
 
-const saveRecipe = () => {
+const saveTheRecipe = () => {
+
   const newRecipe = recipeData.filter((filteredRecipe)=> {
     return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
-    return savedRecipes.push(...newRecipe)
+    saveRecipe(newRecipe, savedRecipes)
   }
-
 
 const deleteRecipe = (event) => {
   const target = (event.target.class);
@@ -205,7 +206,7 @@ export {
   searchRecipes,
   createRandomUser,
   showUserPage,
-  saveRecipe,
+  saveTheRecipe,
   backFilteredRecipes,
   showFilteredRecipes
 }

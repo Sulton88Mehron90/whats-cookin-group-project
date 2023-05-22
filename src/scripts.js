@@ -8,7 +8,8 @@ import './images/turing-logo.png'
 import './images/search-icon.png'
 import './images/chef-icon.png'
 import { allContainer, currentRecipes, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
-  categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser, userButton, saveRecipe, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput } from './domUpdates.js'
+  categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser,
+   userButton, saveTheRecipe, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput } from './domUpdates.js'
 
 // EVENT LISTENERS //
 
@@ -30,7 +31,7 @@ userButton.addEventListener('click', showUserPage);
 homeButton.addEventListener('click', showHome);
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', selectRecipe);
-saveButton.addEventListener('click', saveRecipe);
+saveButton.addEventListener('click', saveTheRecipe);
 backButton.addEventListener('click', backFilteredRecipes);
 userRecipes.addEventListener('click', selectRecipe);
 
