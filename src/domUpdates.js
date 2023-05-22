@@ -129,7 +129,7 @@ const selectRecipe = (event) => {
   }
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
   if (!foundRecipe) {
-    return null;
+    return;
   }
   currentRecipe = makeCurrentRecipe(foundRecipe);
   ingredientsDisplay.innerHTML = " ";
