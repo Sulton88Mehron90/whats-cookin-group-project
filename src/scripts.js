@@ -2,6 +2,8 @@
 
 import './styles.css'
 import apiCalls from './apiCalls'
+import {fetchData} from './apiCalls'
+// import fetch from 'node-fetch'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import './images/search-icon.png'
@@ -28,3 +30,14 @@ userRecipes.addEventListener('click', selectRecipe)
 userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
 })
+
+
+fetchData()
+
+
+// window.addEventListener('load', () => {
+//   fetchPromises().then(data => {
+//     usersData = data[0].users;
+//     globalRecipesData = data[1].recipes;
+//     globalIngredientsData = data[2].ingredients;
+//     createRandomUser(usersData);

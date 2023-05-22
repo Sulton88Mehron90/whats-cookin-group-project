@@ -6,6 +6,7 @@ import { filterByTag, filterByName, filterRecipes } from "./functions/filter-rec
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
+import { fetchData, apiRecipeData } from './apiCalls'
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
@@ -36,6 +37,12 @@ const userSearchInput = document.querySelector('.user__search__input')
 let savedRecipes = [];
 let currentRecipe = {};
 let currentRecipes = recipeData;
+
+
+// API DATA
+
+
+
 
 // Modifiers
 const show = (names) => {
@@ -72,7 +79,7 @@ const backFilteredRecipes = () => {
 
 const viewRecipes = (event) => {
   const target = event.target.id;
-  currentRecipes = filterRecipes(recipeData, target)
+  currentRecipes = filterRecipes(apiRecipeData, target)
   if (!currentRecipes.length) {
     return null;
   }
@@ -127,7 +134,7 @@ const selectRecipe = (event) => {
     deleteRecipe(event)
     return;
   }
-  const foundRecipe = recipeData.find(recipe => recipe.id === target);
+  const foundRecipe = apiRecipeData.find(recipe => recipe.id === target);
   if (!foundRecipe) {
     return;
   }
