@@ -5,6 +5,7 @@ import apiCalls from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import './images/search-icon.png'
+import './images/chef-icon.png'
 // import { currentRecipe } from './data/data-model.js'
 import { allContainer, currentRecipes, displayRecipes, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage, deleteRecipe,
   categoriesContainer, selectRecipe, searchRecipes, viewRecipe, showFilteredRecipes, saveButton, createRandomUser, userButton, saveRecipe, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput } from './domUpdates.js'
@@ -27,5 +28,3 @@ userRecipes.addEventListener('click', selectRecipe)
 userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
 })
-
-userRecipes.addEventListener('contextmenu', deleteRecipe)

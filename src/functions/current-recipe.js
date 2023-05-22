@@ -9,6 +9,7 @@ const makeCurrentRecipe = (recipeData) => {
   const currentRecipeIngredients = recipeIngredients(recipeData.name)
   let recipe = {
     name: recipeData.name,
+    id: recipeData.id,
     image: recipeData.image,
     tags: recipeData.tags,
     cost: calculateCost(recipeData.name),
