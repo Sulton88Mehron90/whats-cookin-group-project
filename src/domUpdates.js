@@ -160,13 +160,11 @@ const createRandomUser = () => {
 // ADD/REMOVE RECIPES //
 
 const saveRecipe = () => {
-  const newRecipe = recipeData.filter((filteredRecipe) => {
+  const newRecipe = recipeData.filter((filteredRecipe)=> {
     return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
-    const modifiedRecipe = newRecipe.map(modifiedRecipe=> {
-    return modifiedRecipe;
-    }) 
-  return savedRecipes.push(...modifiedRecipe);
-};
+    return savedRecipes.push(...newRecipe)
+  }
+
 
 const deleteRecipe = (event) => {
   const target = (event.target.class);
