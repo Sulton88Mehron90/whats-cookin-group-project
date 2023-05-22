@@ -1,6 +1,6 @@
 
 
-const sampleIngredientsData = = [
+const sampleIngredientsData = [
   {
   "id": 20081,
   "name": "wheat flour",
