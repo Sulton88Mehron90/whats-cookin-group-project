@@ -246,4 +246,4 @@ const sampleUserData = [
   }
   ]
 
-  export default sampleUserDat
+  export default sampleUserData
