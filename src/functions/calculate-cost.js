@@ -1,5 +1,5 @@
-import ingredientsData from "../data/ingredients";
-import recipeData from "../data/recipes.js";
+// import ingredientsData from "../data/ingredients";
+import { recipeData, ingredientsData } from "../apiCalls"
 
 const calculateCost = (recipe) => {
   let costs = [];

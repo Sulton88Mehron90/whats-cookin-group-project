@@ -1,5 +1,6 @@
 import { calculateCost } from "./calculate-cost";
 import { recipeIngredients } from "./recipe-ingredients";
+
 // import { currentRecipe } from "../src/data/data-model"
 
 const makeCurrentRecipe = (recipeData) => {
@@ -9,6 +10,7 @@ const makeCurrentRecipe = (recipeData) => {
   const currentRecipeIngredients = recipeIngredients(recipeData.name)
   let recipe = {
     name: recipeData.name,
+    id: recipeData.id,
     image: recipeData.image,
     tags: recipeData.tags,
     cost: calculateCost(recipeData.name),
