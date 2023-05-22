@@ -1,13 +1,13 @@
 // import ingredientsData from "../data/ingredients";
 import { recipeData, ingredientsData } from "../apiCalls"
 
-const calculateCost = (recipe) => {
+const calculateCost = (name, recipeData, ingredientsData) => {
   let costs = [];
   const currentRecipe = recipeData.find((item) => {
-    return item.name === recipe
+    return item.name === name
   });
   if(!currentRecipe){
-    return `Cannot calculate ${recipe} recipe cost`
+    return `Cannot calculate ${name} recipe cost`
   } else {
   let recipeIngredients = currentRecipe.ingredients;
   recipeIngredients.forEach((recipeIngredient) => {
