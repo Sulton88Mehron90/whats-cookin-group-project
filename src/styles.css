@@ -272,9 +272,12 @@ flex-direction: column;
 }
 
 .user__name {
-  font-size: 1em;
+  display: flex;
+  align-content: flex-end;
+  flex-wrap: wrap;
+  font-size: 1.25em;
+  height: 2em;
   margin: 0;
-  text-align: center;
 }
 
 .delete__button {
