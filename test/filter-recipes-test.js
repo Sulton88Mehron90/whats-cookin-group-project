@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { filterByTag, filterByName, filterRecipes } from '../src/functions/filter-recipes';
-import recipeData from '../src/data/recipes'
 import sampleRecipeData from '../src/data/sample-recipes';
 
 describe('filter recipes', () => {

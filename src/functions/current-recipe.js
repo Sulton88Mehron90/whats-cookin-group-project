@@ -1,23 +1,23 @@
 import { calculateCost } from "./calculate-cost";
 import { recipeIngredients } from "./recipe-ingredients";
+// import sampleIngredients from "../data/sample-ingredients";
+// import sampleRecipeData from "../data/sample-recipes";
 
-// import { currentRecipe } from "../src/data/data-model"
-
-const makeCurrentRecipe = (recipeData) => {
+const makeCurrentRecipe = (recipe, recipeData, ingredientsData) => {
   if (!recipeData) {
     return {};
   }
-  const currentRecipeIngredients = recipeIngredients(recipeData.name)
-  let recipe = {
-    name: recipeData.name,
-    id: recipeData.id,
-    image: recipeData.image,
-    tags: recipeData.tags,
-    cost: calculateCost(recipeData.name),
-    instructions: recipeData.instructions,
-    ingredients: recipeIngredients(recipeData.name)
+  const currentRecipeIngredients = recipeIngredients(recipe, recipeData, ingredientsData)
+  let currentRecipe = {
+    name: recipe.name,
+    id: recipe.id,
+    image: recipe.image,
+    tags: recipe.tags,
+    cost: calculateCost(recipe.name, recipeData, ingredientsData),
+    instructions: recipe.instructions,
+    ingredients: recipeIngredients(recipe.name, recipeData, ingredientsData)
   }
-  return recipe;
+  return currentRecipe;
 };
 
 export { makeCurrentRecipe }

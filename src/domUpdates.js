@@ -5,7 +5,7 @@
 import { filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { recipeData, usersData } from './apiCalls'
+import { recipeData, usersData, ingredientsData } from './apiCalls'
 
 // QUERY SELECTORS //
 
@@ -27,12 +27,12 @@ const instructionsDisplay = document.querySelector('.recipe__instructions');
 const recipeCost = document.querySelector('.recipe__cost')
 const homeButton = document.querySelector('.home__button')
 const saveButton = document.querySelector('.recipe__sbutton');
-const userButton = document.querySelector('.home__ubutton')
-const userName = document.querySelector('.user__name')
-const userRecipes = document.querySelector('.user__recipes')
+const userButton = document.querySelector('.home__ubutton');
+const userName = document.querySelector('.user__name');
+const userRecipes = document.querySelector('.user__recipes');
 const backButton = document.querySelector('.recipe__back');
-const userSearchIcon = document.querySelector('.user__searchIcon')
-const userSearchInput = document.querySelector('.user__search__input')
+const userSearchIcon = document.querySelector('.user__searchIcon');
+const userSearchInput = document.querySelector('.user__search__input');
 
 // DATAMODEL //
 let savedRecipes = [];
@@ -88,7 +88,7 @@ const viewRecipes = (event) => {
 const viewRecipe = (recipe) => {
   show([recipeSection]);
   hide([allSection, userSection]);
-  const userRecipeIngredients = recipeIngredients(recipe.name);
+  const userRecipeIngredients = recipeIngredients(recipe.name, recipeData, ingredientsData);
   userRecipeIngredients.forEach(ingredient => {
     ingredientsDisplay.innerHTML += `
     <p class= recipe__instruction style= "margin: inherit"> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
@@ -131,7 +131,7 @@ const selectRecipe = (event) => {
   if (!foundRecipe) {
     return;
   }
-  currentRecipe = makeCurrentRecipe(foundRecipe);
+  currentRecipe = makeCurrentRecipe(foundRecipe, recipeData, ingredientsData);
   ingredientsDisplay.innerHTML = " ";
   instructionsDisplay.innerHTML = " ";
   viewRecipe(currentRecipe);
