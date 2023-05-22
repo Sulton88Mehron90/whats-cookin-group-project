@@ -3,7 +3,7 @@
 // IMPORTS //
 
 import './styles.css'
-import { apiCalls } from './apiCalls'
+import { apiCalls, recipeData } from './apiCalls'
 import './images/turing-logo.png'
 import './images/search-icon.png'
 import './images/chef-icon.png'
@@ -13,7 +13,7 @@ import { allContainer, currentRecipes, viewRecipes, viewSearchResults, homeButto
 // EVENT LISTENERS //
 
 viewSearchResults.addEventListener('click', () => {
-  searchRecipes(currentRecipes, searchInput, allContainer)
+  searchRecipes(recipeData, searchInput, allContainer)
   showFilteredRecipes()
 });
 
