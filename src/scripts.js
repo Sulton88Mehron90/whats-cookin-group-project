@@ -2,7 +2,7 @@
 
 import './styles.css'
 import apiCalls from './apiCalls'
-import {fetchData} from './apiCalls'
+import { fetchData, recipeData } from './apiCalls'
 // import fetch from 'node-fetch'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -14,6 +14,7 @@ import { allContainer, currentRecipes, displayRecipes, viewRecipes, viewSearchRe
 
 // EVENT LISTENERS //
 
+window.addEventListener('load', fetchData)
 viewSearchResults.addEventListener('click', () => {
   searchRecipes(currentRecipes, searchInput, allContainer)
   showFilteredRecipes()
@@ -32,7 +33,7 @@ userSearchIcon.addEventListener('click', () => {
 })
 
 
-fetchData()
+
 
 
 // window.addEventListener('load', () => {

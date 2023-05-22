@@ -1,12 +1,12 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-import recipeData from "./data/recipes.js"
+// import recipeData from "./data/recipes.js"
 import usersData from "./data/users.js"
 import { filterByTag, filterByName, filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { fetchData, apiRecipeData } from './apiCalls'
+import { fetchData, recipeData } from './apiCalls'
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
@@ -79,7 +79,7 @@ const backFilteredRecipes = () => {
 
 const viewRecipes = (event) => {
   const target = event.target.id;
-  currentRecipes = filterRecipes(apiRecipeData, target)
+  currentRecipes = filterRecipes(recipeData, target)
   if (!currentRecipes.length) {
     return null;
   }
@@ -134,7 +134,7 @@ const selectRecipe = (event) => {
     deleteRecipe(event)
     return;
   }
-  const foundRecipe = apiRecipeData.find(recipe => recipe.id === target);
+  const foundRecipe = recipeData.find(recipe => recipe.id === target);
   if (!foundRecipe) {
     return;
   }

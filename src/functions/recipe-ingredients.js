@@ -1,11 +1,12 @@
 // recipe ingredients function here
 
 import ingredientsData from "../data/ingredients";
-import recipeData from "../data/recipes";
+import { recipeData } from "../apiCalls"
 
 const recipeIngredients = (recipeName) => {
   
   const outputArray = [];
+
   const filteredRecipe = recipeData.find((recipe) => recipe.name === recipeName
    );
    if (!filteredRecipe){

@@ -15,15 +15,14 @@ console.log('I will be a fetch request!')
 //   })
 //   .catch((error) => console.log(error))
 // }
-let apiRecipeData = [];
+let recipeData = [];
 
 const fetchData = () => {
 
   fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes`)
       .then(response => response.json())
       .then(data => {
-        apiRecipeData = data.recipes})
-  // setTimeout(() => {console.log(apiRecipeData)}, 2000)
+        recipeData = data.recipes})
 }
 
-export {fetchData, apiRecipeData}
+export {fetchData, recipeData}
