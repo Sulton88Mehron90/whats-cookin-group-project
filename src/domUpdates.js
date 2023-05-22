@@ -1,12 +1,12 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 // import recipeData from "./data/recipes.js"
-import usersData from "./data/users.js"
+// import usersData from "./data/users.js"
 import { filterByTag, filterByName, filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { fetchData, recipeData } from './apiCalls'
+import { fetchRecipeData, ingredientsData, recipeData, usersData } from './apiCalls'
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
@@ -168,12 +168,11 @@ const createRandomUser = () => {
 
 // This function should have its own file and own test suite
 const saveRecipe = () => {
-  userRecipes.innerHTML = 'Select recipe to view or right click to delete.'
-  const newRecipe = recipeData.filter((filteredRecipe)=> {
-    return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
+  const newRecipe = recipeData.filter((filteredRecipe) => {
+
+    return filteredRecipe.id === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
     const modifiedRecipe = newRecipe.map(modifiedRecipe=> {
-      // modifiedRecipe.id = Date.now()
-      return modifiedRecipe
+    return modifiedRecipe
     }) 
   return savedRecipes.push(...modifiedRecipe)
 }

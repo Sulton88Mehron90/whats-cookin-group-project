@@ -2,7 +2,7 @@
 
 import './styles.css'
 import apiCalls from './apiCalls'
-import { fetchData, recipeData } from './apiCalls'
+import { fetchRecipeData, fetchIngredientsData, fetchUserData, recipeData } from './apiCalls'
 // import fetch from 'node-fetch'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -14,14 +14,21 @@ import { allContainer, currentRecipes, displayRecipes, viewRecipes, viewSearchRe
 
 // EVENT LISTENERS //
 
-window.addEventListener('load', fetchData)
+window.addEventListener('load', () => {
+  fetchRecipeData()
+  fetchIngredientsData()
+  fetchUserData()
+})
+
 viewSearchResults.addEventListener('click', () => {
   searchRecipes(currentRecipes, searchInput, allContainer)
   showFilteredRecipes()
 })
 userButton.addEventListener('click', showUserPage)
 homeButton.addEventListener('click', showHome)
-window.addEventListener('load', createRandomUser)
+window.addEventListener('load', () => {
+  setTimeout(() => {createRandomUser()}, 300)
+})
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', selectRecipe)
 saveButton.addEventListener('click', saveRecipe)

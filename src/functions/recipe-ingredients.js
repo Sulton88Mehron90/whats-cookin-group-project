@@ -1,7 +1,7 @@
 // recipe ingredients function here
 
-import ingredientsData from "../data/ingredients";
-import { recipeData } from "../apiCalls"
+// import ingredientsData from "../data/ingredients";
+import { recipeData, ingredientsData } from "../apiCalls"
 
 const recipeIngredients = (recipeName) => {
   
