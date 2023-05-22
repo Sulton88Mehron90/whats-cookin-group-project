@@ -24,4 +24,10 @@ const fetchUserData = () => {
     .then(data => usersData = data.users)
 }
 
-export { ingredientsData, fetchRecipeData, fetchIngredientsData, usersData, fetchUserData, recipeData };
+const apiCalls = () => {
+  fetchRecipeData();
+  fetchIngredientsData();
+  fetchUserData();
+}
+
+export { apiCalls, ingredientsData, usersData, recipeData };

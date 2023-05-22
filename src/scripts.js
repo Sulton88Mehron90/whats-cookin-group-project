@@ -1,51 +1,36 @@
-//NOTE: Data model and non-dom manipulating logic will live in this file.
+// SCRIPTS //
+
+// IMPORTS //
 
 import './styles.css'
-import apiCalls from './apiCalls'
-import { fetchRecipeData, fetchIngredientsData, fetchUserData, recipeData } from './apiCalls'
-// import fetch from 'node-fetch'
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import { apiCalls } from './apiCalls'
 import './images/turing-logo.png'
 import './images/search-icon.png'
 import './images/chef-icon.png'
-// import { currentRecipe } from './data/data-model.js'
-import { allContainer, currentRecipes, displayRecipes, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage, deleteRecipe,
-  categoriesContainer, selectRecipe, searchRecipes, viewRecipe, showFilteredRecipes, saveButton, createRandomUser, userButton, saveRecipe, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput } from './domUpdates.js'
+import { allContainer, currentRecipes, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
+  categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser, userButton, saveRecipe, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput } from './domUpdates.js'
 
 // EVENT LISTENERS //
-
-window.addEventListener('load', () => {
-  fetchRecipeData()
-  fetchIngredientsData()
-  fetchUserData()
-})
 
 viewSearchResults.addEventListener('click', () => {
   searchRecipes(currentRecipes, searchInput, allContainer)
   showFilteredRecipes()
-})
-userButton.addEventListener('click', showUserPage)
-homeButton.addEventListener('click', showHome)
+});
+
 window.addEventListener('load', () => {
-  setTimeout(() => {createRandomUser()}, 300)
-})
-categoriesContainer.addEventListener('click', viewRecipes);
-allContainer.addEventListener('click', selectRecipe)
-saveButton.addEventListener('click', saveRecipe)
-backButton.addEventListener('click', backFilteredRecipes)
-userRecipes.addEventListener('click', selectRecipe)
+  setTimeout(() => {createRandomUser()}, 1000)
+});
 
 userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
-})
+});
 
+window.addEventListener('load', apiCalls);
+userButton.addEventListener('click', showUserPage);
+homeButton.addEventListener('click', showHome);
+categoriesContainer.addEventListener('click', viewRecipes);
+allContainer.addEventListener('click', selectRecipe);
+saveButton.addEventListener('click', saveRecipe);
+backButton.addEventListener('click', backFilteredRecipes);
+userRecipes.addEventListener('click', selectRecipe);
 
-
-
-
-// window.addEventListener('load', () => {
-//   fetchPromises().then(data => {
-//     usersData = data[0].users;
-//     globalRecipesData = data[1].recipes;
-//     globalIngredientsData = data[2].ingredients;
-//     createRandomUser(usersData);
