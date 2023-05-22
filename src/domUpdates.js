@@ -135,14 +135,9 @@ const createRandomUser = () => {
 
 // This function should have its own file and own test suite
 const saveRecipe = () => {
-  userRecipes.innerText = 'Select recipe to view or right click to delete.'
   const newRecipe = recipeData.filter((filteredRecipe)=> {
     return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
-    const modifiedRecipe = newRecipe.map(modifiedRecipe=> {
-      modifiedRecipe.id = Date.now()
-      return modifiedRecipe
-    }) 
-    return savedRecipes.push(...modifiedRecipe)
+    return savedRecipes.push(...newRecipe)
   }
 
 
