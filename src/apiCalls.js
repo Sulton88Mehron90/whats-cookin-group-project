@@ -16,6 +16,7 @@ const fetchIngredientsData = () => {
   fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
     .then(response => response.json())
     .then(data => ingredientsData = data.ingredients)
+    .catch(error => console.log(error));
 }
 
 const fetchUserData = () => {
