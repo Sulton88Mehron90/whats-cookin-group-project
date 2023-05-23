@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { saveRecipe, savedRecipes } from '../src/functions/save-recipe';
+import { saveRecipe } from '../src/functions/save-recipe';
 
 describe('save recipe', () => {
   it('should be a function.', function() {
