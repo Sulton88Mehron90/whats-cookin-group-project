@@ -1,19 +1,11 @@
-// recipe ingredients function here
-
-// import ingredientsData from "../data/ingredients";
-import { recipeData, ingredientsData } from "../apiCalls"
-
 const recipeIngredients = (recipeName, recipeData, ingredientsData) => {
   const outputArray = [];
-  // console.log(recipeData)
   const filteredRecipe = recipeData.find((recipe) => {
     return recipe.name === recipeName
-  })
-
+  });
    if (!filteredRecipe){
-     return `Sorry, cannot find a recipe for ${recipeName}.`
-   }
-
+     return `Sorry, cannot find a recipe for ${recipeName}.`;
+   };
    filteredRecipe.ingredients.forEach(recipeIngredient => {
     ingredientsData.forEach(ingredient => {
       if (recipeIngredient.id === ingredient.id) {
@@ -23,10 +15,10 @@ const recipeIngredients = (recipeName, recipeData, ingredientsData) => {
         output.unit = recipeIngredient.quantity.unit;
         output.cost = ingredient.estimatedCostInCents;
         outputArray.push(output);
-      }
-    })
-  })
+      };
+    });
+  });
   return outputArray;
-}
+};
 
 export { recipeIngredients };
