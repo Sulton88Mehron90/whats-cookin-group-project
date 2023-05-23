@@ -169,13 +169,14 @@ const saveTheRecipe = () => {
   }
 
 const deleteRecipe = (event) => {
-  // const target = (event.target.class);
-  savedRecipes.forEach(savedRecipe=> {
-    if (parseInt(event.target.id) === savedRecipe.id) {
-      let recipeIndex = savedRecipes.indexOf(savedRecipe);
-      savedRecipes.splice(recipeIndex, 1);
-    }
-  })
+  const targetId = parseInt(event.target.id);
+  deleteRecipe(targetId, savedRecipes)
+  // savedRecipes.forEach(savedRecipe=> {
+  //   if (targetId === savedRecipe.id) {
+  //     let recipeIndex = savedRecipes.indexOf(savedRecipe);
+  //     savedRecipes.splice(recipeIndex, 1);
+  //   }
+  // })
   displayRecipes(savedRecipes, userRecipes);
 };
 

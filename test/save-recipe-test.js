@@ -6,7 +6,7 @@ describe('save recipe', () => {
     expect(saveRecipe).to.be.a('function')
   })
   it('should be able to add a recipe to the saved reciped array', () => {
-    let savedRecipes =[]
+    let savedRecipes = []
     saveRecipe([{name: 'breakfast cereal', ingredients: ['milk', 'cereal']}], savedRecipes)
     expect(savedRecipes.length).to.deep.equal(1)
   })

@@ -2,16 +2,21 @@
 
 
 
-const deleteRecipe = (event) => {
+const deleteRecipe = (targetId, savedRecipes) => {
+  console.log(savedRecipes)
   savedRecipes.forEach(savedRecipe=> {
-    if (parseInt(event.target.id) === savedRecipe.id) {
-      let recipeIndex = savedRecipes.indexOf(savedRecipe)
+    console.log(savedRecipe.id)
+    console.log(targetId)
+    console.log(targetId === savedRecipe.id)
+    if (targetId === savedRecipe.id) {
+      let recipeIndex = savedRecipes.indexOf(savedRecipe);
+      console.log(recipeIndex)
       savedRecipes.splice(recipeIndex, 1);
-      displayRecipes(savedRecipes)
-      show([userSection])
     }
   })
+  console.log(savedRecipes)
+  return savedRecipes
 }
 
 
-export { deleteRecipe };
+export { deleteRecipe }
