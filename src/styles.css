@@ -305,7 +305,7 @@ flex-direction: column;
   background-color:rgb(241, 167, 167)
 }
 
-.recipe__back, .home__button, .home__searchIcon, .recipe__sbutton, .user__searchIcon, .delete__button {
+.recipe__back, .user__back, .home__button, .home__searchIcon, .recipe__sbutton, .user__searchIcon, .delete__button {
   cursor: pointer;
 }
 
