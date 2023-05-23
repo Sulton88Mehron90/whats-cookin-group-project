@@ -16,7 +16,6 @@ const allSection = document.querySelector('.all');
 const userSection = document.querySelector('.user');
 const categoriesSection = document.querySelector('.categories');
 const categoriesContainer = document.querySelector('.categories__container');
-const footerSection = document.querySelector('.footer');
 const viewSearchResults = document.querySelector('.home__searchIcon');
 const searchInput = document.querySelector('.home__searchInput');
 const allContainer = document.querySelector('.all__container');
@@ -54,23 +53,23 @@ const hide = (names) => {
 
 const showHome = () => {
   hide([allSection, homeButton, recipeSection, userSection]);
-  show([categoriesSection, footerSection, userButton]);
+  show([categoriesSection, userButton]);
 };
 
 const showUserPage = () => {
   displayRecipes(savedRecipes, userRecipes);
   show([userSection, homeButton]);
-  hide([categoriesSection, footerSection, recipeSection, allSection]);
+  hide([categoriesSection, recipeSection, allSection]);
 };
 
 const showFilteredRecipes = () => {
-  hide([categoriesSection, footerSection, recipeSection, userSection]);
+  hide([categoriesSection, recipeSection, userSection]);
   show([allSection, homeButton]);
 };
 
 const backFilteredRecipes = () => {
     displayRecipes(currentRecipes, allContainer);
-    hide([categoriesSection, footerSection, recipeSection, userSection]);
+    hide([categoriesSection, recipeSection, userSection]);
     show([allSection, homeButton]);
 };
 
@@ -82,7 +81,7 @@ const viewRecipes = (event) => {
   }
   allHeader.innerText = target;
   displayRecipes(currentRecipes, allContainer);
-  hide([categoriesSection, footerSection, recipeSection, userSection]);
+  hide([categoriesSection, recipeSection, userSection]);
   show([allSection, homeButton]);
   show([backButton]);
 };

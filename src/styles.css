@@ -1,4 +1,3 @@
-
 /* STYLES */
 
 html {
@@ -64,16 +63,6 @@ h1 {
   height: 2em;
   width: 11em;
   cursor: pointer;
-}
-
-footer {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
-.footer__pic {
-  padding: 1em
 }
 
 .home__button, .recipe__instructions, .recipe__instruction, .recipe__ingredients {
@@ -243,6 +232,7 @@ flex-direction: column;
 .user__message {
   margin-bottom: 0;
 }
+
 .user__turing, .user__img, .user__icon {
   height: 4em
 }
