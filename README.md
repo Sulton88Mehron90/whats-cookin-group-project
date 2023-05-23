@@ -1,8 +1,8 @@
 # What's Cookin'? 
 
 The details of this project are outlined in the project specs
--[part one](https://frontend.turing.edu/projects/module-2/whats-cookin-part-one.html)
--[part two](https://frontend.turing.edu/projects/module-2/whats-cookin-part-two-agile.html)
+- [part one](https://frontend.turing.edu/projects/module-2/whats-cookin-part-one.html)
+- [part two](https://frontend.turing.edu/projects/module-2/whats-cookin-part-two-agile.html)
 
 ## DESCRIPTION
 
