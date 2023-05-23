@@ -49,10 +49,10 @@ https://www.loom.com/share/d4e78185aee34262b0315096767db4a0
 
 ## CONTRIBUTORS
 
-[Benjamin Holden](https://github.com/BenHolden010)
-[Jamie Caudill](https://github.com/JamieCaudill)
-[Parvin A. Sattorova](https://github.com/Sulton88Mehron90)
-[Marisa Wyatt](https://github.com/Marisa5280)
+- [Benjamin Holden](https://github.com/BenHolden010)
+- [Jamie Caudill](https://github.com/JamieCaudill)
+- [Parvin A. Sattorova](https://github.com/Sulton88Mehron90)
+- [Marisa Wyatt](https://github.com/Marisa5280)
 
 ## SET UP/INSTALLATION
 
