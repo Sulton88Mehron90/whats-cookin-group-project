@@ -7,6 +7,7 @@ import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
 import { recipeData, usersData, ingredientsData } from './apiCalls'
 import { saveRecipe } from './functions/save-recipe.js'
+import { deleteRecipe } from './functions/delete-recipe.js'
 
 // QUERY SELECTORS //
 
@@ -126,7 +127,7 @@ const displayRecipes = (recipes, container) => {
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   if(event.target.classList.contains('delete__button')) {
-    deleteRecipe(event);
+    deleteTheRecipe(event);
     return;
   }
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
@@ -163,15 +164,16 @@ const saveTheRecipe = () => {
     saveRecipe(newRecipe, savedRecipes)
   }
 
-const deleteRecipe = (event) => {
-  const target = (event.target.class);
-  savedRecipes.forEach(savedRecipe=> {
-    if (parseInt(event.target.id) === savedRecipe.id) {
-      let recipeIndex = savedRecipes.indexOf(savedRecipe);
-      savedRecipes.splice(recipeIndex, 1);
-      displayRecipes(savedRecipes, userRecipes);
-    }
-  })
+const deleteTheRecipe = (event) => {
+  const targetId = parseInt(event.target.id);
+  deleteRecipe(targetId, savedRecipes)
+  // savedRecipes.forEach(savedRecipe=> {
+  //   if (targetId === savedRecipe.id) {
+  //     let recipeIndex = savedRecipes.indexOf(savedRecipe);
+  //     savedRecipes.splice(recipeIndex, 1);
+  //   }
+  // })
+  displayRecipes(savedRecipes, userRecipes);
 };
 
 // EXPORTS //
@@ -191,7 +193,7 @@ export {
   userSearchInput,
   userRecipes,
   searchInput,
-  deleteRecipe,
+  deleteTheRecipe,
   displayRecipes,
   viewRecipes,
   viewRecipe,
