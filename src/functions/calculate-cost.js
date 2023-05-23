@@ -3,7 +3,7 @@ const calculateCost = (name, recipeData, ingredientsData) => {
   const currentRecipe = recipeData.find((item) => {
     return item.name === name;
   });
-  if(!currentRecipe){
+  if(!currentRecipe) {
     return `Cannot calculate ${name} recipe cost`;
   } else {
   let recipeIngredients = currentRecipe.ingredients;
