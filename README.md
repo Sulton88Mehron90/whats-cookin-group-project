@@ -1,13 +1,12 @@
 # What's Cookin'? 
-[Deployed Link](insert-link-here)
 
 The details of this project are outlined in the project specs
--[part one](https://frontend.turing.edu/projects/module-2/whats-cookin-part-one.html)
--[part two](https://frontend.turing.edu/projects/module-2/whats-cookin-part-two-agile.html)
+- [part one](https://frontend.turing.edu/projects/module-2/whats-cookin-part-one.html)
+- [part two](https://frontend.turing.edu/projects/module-2/whats-cookin-part-two-agile.html)
 
 ## DESCRIPTION
 
-What's Cookin'? is a group project completed as a part of Module 2 at Turing School of Software Design's Front-End curriculum. The application hosts a variety of recipes that can be viewed as a whole, by course (salads, hor d'oevres, main courses, sides), or searched by an ingredient to show relevent recipes. When looking at a recipe's page that recipe can be saved to the users saved recipes page. When looking at the saved recipe collection the user may delete recipes of their choosing.
+"What's Cookin'?" is a group project completed as a part of Module 2 at Turing School of Software Design's Front-End curriculum. The application hosts a variety of recipes that can be viewed as a whole, by course (salads, hor d'oevres, main courses, sides), or searched by a tag or recipe name to show relevent recipes. When looking at a recipe's page that recipe can be saved to the users saved recipes page. When looking at the saved recipe collection the user may search through their recipes and delete recipes of their choosing.
 
 ## LEARNING GOALS
 
@@ -17,9 +16,9 @@ What's Cookin'? is a group project completed as a part of Module 2 at Turing Sch
 - Implement a robust testing suite using TDD
 - Make network requests to retrieve data
 - Collaborate productively and professionally as a team. Ensure all team members are able to be heard and contribute throughout the project.
-- Understand the use of new technologies introduced in this project 
--  WebPack
--  Fetch API
+- Understand the use of new technologies introduced in this project:
+  -  WebPack
+  -  Fetch API
 
 ## TECHNOLOGIES USED
 
@@ -34,12 +33,25 @@ What's Cookin'? is a group project completed as a part of Module 2 at Turing Sch
 - Fetch API
 
 ## APP PREVIEW
-<!-- INSERT GIFS/SCREENSHOTS -->
+https://www.loom.com/share/d4e78185aee34262b0315096767db4a0
+
+## FEATURES
+
+- Clickable images that filter recipes by tag
+- Search bar that filters recipes by name or tag
+- Clickable recipe images that display all recipe details, including: ingredients, instructions, and estimated ingredient cost
+- Individual recipes can be saved by a user to a collection of saved recipes
+- User is randomly generated on page load
+- User page that displays all saved recipes
+- User can filter saved recipes using search bar
+- User can delete selected recipes from their saved recipes
+- Back button returns to last page 
 
 ## CONTRIBUTORS
+
 [Benjamin Holden](https://github.com/BenHolden010)
 [Jamie Caudill](https://github.com/JamieCaudill)
-[Parvin Sultan](https://github.com/Sulton88Mehron90)
+[Parvin A. Sattorova](https://github.com/Sulton88Mehron90)
 [Marisa Wyatt](https://github.com/Marisa5280)
 
 ## SET UP/INSTALLATION
