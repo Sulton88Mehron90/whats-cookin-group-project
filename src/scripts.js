@@ -4,6 +4,7 @@
 
 import './styles.css'
 import { apiCalls, recipeData } from './apiCalls'
+import './images/food-panorama.jpg'
 import './images/turing-logo.png'
 import './images/search-icon.png'
 import './images/chef-icon.png'
