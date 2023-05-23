@@ -12,13 +12,13 @@
     <section class="home">
       <section class="home__header">
         <div class="home__header2">
-          <img class="home__icon" src="/images/turing-logo.png">
+          <img class="home__icon" src="/images/turing-logo.png" alt="Turing logo">
           <button class="home__button class--hidden">Home Page</button>
         </div>
         <h1>WHAT'S COOKIN'?</h1>
         <section class="home__right">
           <button class="home__ubutton">user page</button>
-          <img class="user__icon" src="https://media.istockphoto.com/id/1166149111/vector/chef-in-a-cooking-hat-vector-outline-icon-food-concept-for-graphic-design-logo-web-site.jpg?s=612x612&w=0&k=20&c=ars2r_Y6s5OSSLHymV6MAvhxokUDqxSaxDK36ibhjgk=" alt="a cook">
+          <img class="user__icon" src="https://media.istockphoto.com/id/1166149111/vector/chef-in-a-cooking-hat-vector-outline-icon-food-concept-for-graphic-design-logo-web-site.jpg?s=612x612&w=0&k=20&c=ars2r_Y6s5OSSLHymV6MAvhxokUDqxSaxDK36ibhjgk=" alt="Cook icon">
           <h1 class="user__name">
             <!-- "Welcome ${user name}!" goes here -->
           </h1>
@@ -27,7 +27,7 @@
         </section>
       </section>
       <section class="categories">
-        <img class="categories__video" src="https://thumbs.dreamstime.com/b/food-panorama-copy-space-many-various-products-shot-top-dark-blue-wooden-background-flat-lay-place-text-200856024.jpg">
+        <img class="categories__video" src="./images/food-panorama.jpg" alt="Food panorama image">
         <section class="categories__container">
           <div class="categories__salads categories--category" id="salad">Salads</div>
           <div class="categories__horsdoeuvres categories--category" id="hor d'oeuvre">Hors D'oeuvres</div>
@@ -41,8 +41,9 @@
       <section class="user__header">
         <h1 class="user__message">recipes to cook:</h1>
         <div class="user__search">
+          <button class="user__back class--hidden">Back</button>
           <input class="user__search__input" type="search" placeholder="search saved recipes" required="">
-          <img class="user__searchIcon" src="./images/search-icon.png">
+          <img class="user__searchIcon" src="./images/search-icon.png" alt="Search Icon">
         </div>
       </section>
       <section class="user__recipes">Your saved recipes will display here!
@@ -52,7 +53,6 @@
     <section class="all class--hidden">
       <h1 class="all__header">Header Here</h1>
       <div class="all__container">
-        
         <!-- lists of recipes will go here -->
       </div> 
     </section>
@@ -77,7 +77,6 @@
         </section>
       </section>
     </section>
-    
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
