@@ -34,7 +34,7 @@ What's Cookin'? is a group project completed as a part of Module 2 at Turing Sch
 - Fetch API
 
 ## APP PREVIEW
-<!-- INSERT GIFS/SCREENSHOTS -->
+https://www.loom.com/share/d4e78185aee34262b0315096767db4a0
 
 
 ## CONTRIBUTORS
