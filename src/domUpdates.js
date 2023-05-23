@@ -16,7 +16,6 @@ const allSection = document.querySelector('.all');
 const userSection = document.querySelector('.user');
 const categoriesSection = document.querySelector('.categories');
 const categoriesContainer = document.querySelector('.categories__container');
-const footerSection = document.querySelector('.footer');
 const viewSearchResults = document.querySelector('.home__searchIcon');
 const searchInput = document.querySelector('.home__searchInput');
 const allContainer = document.querySelector('.all__container');
@@ -51,27 +50,25 @@ const hide = (names) => {
   names.forEach((name) => name.classList.add('class--hidden'));
 };
 
-// DOM //
-
 const showHome = () => {
   hide([allSection, homeButton, recipeSection, userSection]);
-  show([categoriesSection, footerSection, userButton]);
+  show([categoriesSection, userButton]);
 };
 
 const showUserPage = () => {
   displayRecipes(savedRecipes, userRecipes);
   show([userSection, homeButton]);
-  hide([categoriesSection, footerSection, recipeSection, allSection]);
+  hide([categoriesSection, recipeSection, allSection]);
 };
 
 const showFilteredRecipes = () => {
-  hide([categoriesSection, footerSection, recipeSection, userSection]);
+  hide([categoriesSection, recipeSection, userSection]);
   show([allSection, homeButton]);
 };
 
 const backFilteredRecipes = () => {
     displayRecipes(currentRecipes, allContainer);
-    hide([categoriesSection, footerSection, recipeSection, userSection]);
+    hide([categoriesSection, recipeSection, userSection]);
     show([allSection, homeButton]);
 };
 
@@ -83,7 +80,7 @@ const viewRecipes = (event) => {
   }
   allHeader.innerText = target;
   displayRecipes(currentRecipes, allContainer);
-  hide([categoriesSection, footerSection, recipeSection, userSection]);
+  hide([categoriesSection, recipeSection, userSection]);
   show([allSection, homeButton]);
 };
 
@@ -149,6 +146,7 @@ const searchRecipes = (recipes, searcher, container) => {
   if(searcher === userSearchInput) {
     show([userBackButton])
   }
+  allHeader.innerText = searcher.value;
   recipes = filterRecipes(recipes, searcher.value);
   displayRecipes(recipes, container);
 };
@@ -167,20 +165,14 @@ const createRandomUser = () => {
 
 const saveTheRecipe = () => {
 
-  const newRecipe = recipeData.filter((filteredRecipe)=> {
-    return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
-    saveRecipe(newRecipe, savedRecipes)
-  }
+const newRecipe = recipeData.filter((filteredRecipe)=> {
+  return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
+  saveRecipe(newRecipe, savedRecipes)
+}
 
 const deleteTheRecipe = (event) => {
   const targetId = parseInt(event.target.id);
   deleteRecipe(targetId, savedRecipes)
-  // savedRecipes.forEach(savedRecipe=> {
-  //   if (targetId === savedRecipe.id) {
-  //     let recipeIndex = savedRecipes.indexOf(savedRecipe);
-  //     savedRecipes.splice(recipeIndex, 1);
-  //   }
-  // })
   displayRecipes(savedRecipes, userRecipes);
 };
 

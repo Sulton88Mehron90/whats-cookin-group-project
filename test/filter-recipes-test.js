@@ -41,6 +41,7 @@ describe('filterRecipes', () => {
     let filteredRecipes = filterRecipes(sampleRecipeData, 'side dish');
     let filteredRecipeNames = filteredRecipes.map(recipe => recipe.name);
     expect(filteredRecipeNames).to.deep.equal(['Elvis Pancakes', "Ambrosia Cupcakes", "Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)"])
+    
     filteredRecipes = filterRecipes(sampleRecipeData, 'chocolate');
     filteredRecipeNames = filteredRecipes.map(recipe => recipe.name);
     expect(filteredRecipeNames).to.deep.equal(["Loaded Chocolate Chip Pudding Cookie Cups", "Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)"])
