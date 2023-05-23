@@ -103,23 +103,24 @@ const viewRecipe = (recipe) => {
 
 const displayRecipes = (recipes, container) => {
   container.innerHTML = ''
-  if (!recipes) {
-    return 'No results';
+  if (!recipes.length) {
+    allHeader.innerText = 'No results'
+  } else {
+    recipes.forEach(recipe => {
+      if (container !== userRecipes) {
+        container.innerHTML += 
+        `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
+        <p class='all__text' id="${recipe.id}">${recipe.name}</p>
+        </div>`
+      } else {
+        container.innerHTML += 
+        `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
+        <p class='all__text' id="${recipe.id}">${recipe.name}</p>
+        </div>
+        <button class="delete__button" id=${recipe.id}>X</button>`
+      }
+    })
   }
-  recipes.forEach(recipe => {
-    if (container !== userRecipes) {
-    container.innerHTML += 
-    `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
-      <p class='all__text' id="${recipe.id}">${recipe.name}</p>
-    </div>`
-    } else {
-      container.innerHTML += 
-    `<div style="background-image: url(${recipe.image})" class="all__recipes" id="${recipe.id}">
-      <p class='all__text' id="${recipe.id}">${recipe.name}</p>
-    </div>
-    <button class="delete__button" id=${recipe.id}>X</button>`
-    }
-  })
 };
 
 const selectRecipe = (event) => {
@@ -140,13 +141,7 @@ const selectRecipe = (event) => {
 
 const searchRecipes = (recipes, searcher, container) => {
   recipes = filterRecipes(recipes, searcher.value);
-  if(!searcher.value || !recipes.length) {
-    container.innerHTML = 
-      displayRecipes(recipes, container);
-       `<p class='all__text'>No Results!</p>`
-  } else {
   displayRecipes(recipes, container);
-  }
 };
 
 const createRandomUser = () => {
