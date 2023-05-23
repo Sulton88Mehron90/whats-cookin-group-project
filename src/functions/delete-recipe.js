@@ -1,7 +1,4 @@
 
-
-
-
 const deleteRecipe = (targetId, savedRecipes) => {
   console.log(savedRecipes)
   savedRecipes.forEach(savedRecipe=> {
@@ -17,6 +14,5 @@ const deleteRecipe = (targetId, savedRecipes) => {
   console.log(savedRecipes)
   return savedRecipes
 }
-
 
 export { deleteRecipe }
