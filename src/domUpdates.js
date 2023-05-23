@@ -146,6 +146,7 @@ const searchRecipes = (recipes, searcher, container) => {
   if(searcher === userSearchInput) {
     show([userBackButton])
   }
+  allHeader.innerText = searcher.value;
   recipes = filterRecipes(recipes, searcher.value);
   displayRecipes(recipes, container);
 };
