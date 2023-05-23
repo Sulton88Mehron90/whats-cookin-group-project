@@ -4,8 +4,8 @@ const deleteRecipe = (targetId, savedRecipes) => {
     if (targetId === savedRecipe.id) {
       let recipeIndex = savedRecipes.indexOf(savedRecipe);
       savedRecipes.splice(recipeIndex, 1);
-    }
-  })
+    };
+  });
   return savedRecipes
 }
 
