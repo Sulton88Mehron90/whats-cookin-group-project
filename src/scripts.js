@@ -18,7 +18,7 @@ viewSearchResults.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
-  setTimeout(() => {createRandomUser()}, 1000)
+  setTimeout(() => {createRandomUser()}, 1000);
 });
 
 userSearchIcon.addEventListener('click', () => {

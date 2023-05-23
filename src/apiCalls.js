@@ -22,6 +22,7 @@ const fetchUserData = () => {
   fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users`)
     .then(response => response.json())
     .then(data => usersData = data.users)
+    .catch(error => console.log(error));
 }
 
 const apiCalls = () => {
