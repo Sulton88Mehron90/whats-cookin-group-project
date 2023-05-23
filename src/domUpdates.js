@@ -49,8 +49,6 @@ const hide = (names) => {
   names.forEach((name) => name.classList.add('class--hidden'));
 };
 
-// DOM //
-
 const showHome = () => {
   hide([allSection, homeButton, recipeSection, userSection]);
   show([categoriesSection, userButton]);
@@ -158,20 +156,14 @@ const createRandomUser = () => {
 
 const saveTheRecipe = () => {
 
-  const newRecipe = recipeData.filter((filteredRecipe)=> {
-    return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
-    saveRecipe(newRecipe, savedRecipes)
-  }
+const newRecipe = recipeData.filter((filteredRecipe)=> {
+  return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
+  saveRecipe(newRecipe, savedRecipes)
+}
 
 const deleteTheRecipe = (event) => {
   const targetId = parseInt(event.target.id);
   deleteRecipe(targetId, savedRecipes)
-  // savedRecipes.forEach(savedRecipe=> {
-  //   if (targetId === savedRecipe.id) {
-  //     let recipeIndex = savedRecipes.indexOf(savedRecipe);
-  //     savedRecipes.splice(recipeIndex, 1);
-  //   }
-  // })
   displayRecipes(savedRecipes, userRecipes);
 };
 
