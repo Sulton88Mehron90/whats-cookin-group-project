@@ -3,7 +3,7 @@ const recipeIngredients = (recipeName, recipeData, ingredientsData) => {
   const filteredRecipe = recipeData.find((recipe) => {
     return recipe.name === recipeName
   });
-   if (!filteredRecipe){
+   if (!filteredRecipe) {
      return `Sorry, cannot find a recipe for ${recipeName}.`;
    };
    filteredRecipe.ingredients.forEach(recipeIngredient => {
