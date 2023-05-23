@@ -7,9 +7,9 @@ import { apiCalls, recipeData } from './apiCalls'
 import './images/turing-logo.png'
 import './images/search-icon.png'
 import './images/chef-icon.png'
-import { allContainer, currentRecipes, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
+import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
   categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser,
-   userButton, saveTheRecipe, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput } from './domUpdates.js'
+   userButton, saveTheRecipe, displayRecipes, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput, userBackButton, hide } from './domUpdates.js'
 
 // EVENT LISTENERS //
 
@@ -26,6 +26,11 @@ userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
 });
 
+userBackButton.addEventListener('click', () => {
+  displayRecipes(savedRecipes, userRecipes);
+  hide([userBackButton]);
+});
+
 window.addEventListener('load', apiCalls);
 userButton.addEventListener('click', showUserPage);
 homeButton.addEventListener('click', showHome);
@@ -34,4 +39,5 @@ allContainer.addEventListener('click', selectRecipe);
 saveButton.addEventListener('click', saveTheRecipe);
 backButton.addEventListener('click', backFilteredRecipes);
 userRecipes.addEventListener('click', selectRecipe);
+
 

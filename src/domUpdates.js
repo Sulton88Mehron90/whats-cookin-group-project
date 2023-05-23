@@ -34,6 +34,7 @@ const userRecipes = document.querySelector('.user__recipes');
 const backButton = document.querySelector('.recipe__back');
 const userSearchIcon = document.querySelector('.user__searchIcon');
 const userSearchInput = document.querySelector('.user__search__input');
+const userBackButton = document.querySelector('.user__back');
 
 // DATAMODEL //
 let savedRecipes = [];
@@ -83,7 +84,6 @@ const viewRecipes = (event) => {
   displayRecipes(currentRecipes, allContainer);
   hide([categoriesSection, footerSection, recipeSection, userSection]);
   show([allSection, homeButton]);
-  show([backButton]);
 };
 
 const viewRecipe = (recipe) => {
@@ -125,6 +125,11 @@ const displayRecipes = (recipes, container) => {
 
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
+  const targetClass = event.target.parentNode.classList;
+  show ([backButton, saveButton])
+  if(targetClass.contains('user__recipes')) {
+    hide([backButton, saveButton])
+  }
   if(event.target.classList.contains('delete__button')) {
     deleteRecipe(event);
     return;
@@ -140,6 +145,9 @@ const selectRecipe = (event) => {
 };
 
 const searchRecipes = (recipes, searcher, container) => {
+  if(searcher === userSearchInput) {
+    show([userBackButton])
+  }
   recipes = filterRecipes(recipes, searcher.value);
   displayRecipes(recipes, container);
 };
@@ -191,6 +199,8 @@ export {
   userSearchInput,
   userRecipes,
   searchInput,
+  userBackButton,
+  hide,
   deleteRecipe,
   displayRecipes,
   viewRecipes,
