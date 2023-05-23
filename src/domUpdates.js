@@ -7,6 +7,7 @@ import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
 import { recipeData, usersData, ingredientsData } from './apiCalls'
 import { saveRecipe } from './functions/save-recipe.js'
+import { deleteRecipe } from './functions/delete-recipe.js'
 
 // QUERY SELECTORS //
 
@@ -34,6 +35,7 @@ const userRecipes = document.querySelector('.user__recipes');
 const backButton = document.querySelector('.recipe__back');
 const userSearchIcon = document.querySelector('.user__searchIcon');
 const userSearchInput = document.querySelector('.user__search__input');
+const userBackButton = document.querySelector('.user__back');
 
 // DATAMODEL //
 let savedRecipes = [];
@@ -83,7 +85,6 @@ const viewRecipes = (event) => {
   displayRecipes(currentRecipes, allContainer);
   hide([categoriesSection, footerSection, recipeSection, userSection]);
   show([allSection, homeButton]);
-  show([backButton]);
 };
 
 const viewRecipe = (recipe) => {
@@ -125,8 +126,13 @@ const displayRecipes = (recipes, container) => {
 
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
+  const targetClass = event.target.parentNode.classList;
+  show ([backButton, saveButton])
+  if(targetClass.contains('user__recipes')) {
+    hide([backButton, saveButton])
+  }
   if(event.target.classList.contains('delete__button')) {
-    deleteRecipe(event);
+    deleteTheRecipe(event);
     return;
   }
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
@@ -140,6 +146,9 @@ const selectRecipe = (event) => {
 };
 
 const searchRecipes = (recipes, searcher, container) => {
+  if(searcher === userSearchInput) {
+    show([userBackButton])
+  }
   recipes = filterRecipes(recipes, searcher.value);
   displayRecipes(recipes, container);
 };
@@ -163,15 +172,16 @@ const saveTheRecipe = () => {
     saveRecipe(newRecipe, savedRecipes)
   }
 
-const deleteRecipe = (event) => {
-  const target = (event.target.class);
-  savedRecipes.forEach(savedRecipe=> {
-    if (parseInt(event.target.id) === savedRecipe.id) {
-      let recipeIndex = savedRecipes.indexOf(savedRecipe);
-      savedRecipes.splice(recipeIndex, 1);
-      displayRecipes(savedRecipes, userRecipes);
-    }
-  })
+const deleteTheRecipe = (event) => {
+  const targetId = parseInt(event.target.id);
+  deleteRecipe(targetId, savedRecipes)
+  // savedRecipes.forEach(savedRecipe=> {
+  //   if (targetId === savedRecipe.id) {
+  //     let recipeIndex = savedRecipes.indexOf(savedRecipe);
+  //     savedRecipes.splice(recipeIndex, 1);
+  //   }
+  // })
+  displayRecipes(savedRecipes, userRecipes);
 };
 
 // EXPORTS //
@@ -191,7 +201,9 @@ export {
   userSearchInput,
   userRecipes,
   searchInput,
-  deleteRecipe,
+  userBackButton,
+  hide,
+  deleteTheRecipe,
   displayRecipes,
   viewRecipes,
   viewRecipe,
