@@ -4,6 +4,13 @@ The details of this project are outlined in the project specs
 - [part one](https://frontend.turing.edu/projects/module-2/whats-cookin-part-one.html)
 - [part two](https://frontend.turing.edu/projects/module-2/whats-cookin-part-two-agile.html)
 
+## CONTRIBUTORS
+
+- [Benjamin Holden](https://github.com/BenHolden010)
+- [Jamie Caudill](https://github.com/JamieCaudill)
+- [Parvin A. Sattorova](https://github.com/Sulton88Mehron90)
+- [Marisa Wyatt](https://github.com/Marisa5280)
+
 ## DESCRIPTION
 
 "What's Cookin'?" is a group project completed as a part of Module 2 at Turing School of Software Design's Front-End curriculum. The application hosts a variety of recipes that can be viewed as a whole, by course (salads, hor d'oevres, main courses, sides), or searched by a tag or recipe name to show relevent recipes. When looking at a recipe's page that recipe can be saved to the users saved recipes page. When looking at the saved recipe collection the user may search through their recipes and delete recipes of their choosing.
@@ -47,12 +54,6 @@ https://www.loom.com/share/d4e78185aee34262b0315096767db4a0
 - User can delete selected recipes from their saved recipes
 - Back button returns to last page 
 
-## CONTRIBUTORS
-
-- [Benjamin Holden](https://github.com/BenHolden010)
-- [Jamie Caudill](https://github.com/JamieCaudill)
-- [Parvin A. Sattorova](https://github.com/Sulton88Mehron90)
-- [Marisa Wyatt](https://github.com/Marisa5280)
 
 ## SET UP/INSTALLATION
 
