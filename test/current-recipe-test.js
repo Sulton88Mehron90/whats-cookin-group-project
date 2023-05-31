@@ -5,8 +5,15 @@ import sampleRecipeData from "../src/data/sample-recipes"
 import sampleIngredients from '../src/data/sample-ingredients';
 
 describe('makeCurrentRecipe', () => {
+  let ingredients
+  let recipes
+  let currentRecipe
+  beforeEach( function() {
+    ingredients = sampleIngredients
+    recipes = sampleRecipeData
+    currentRecipe = makeCurrentRecipe(sampleRecipeData[0], sampleRecipeData, sampleIngredients);
+  })
   it('should return an object', () => {
-    const currentRecipe = makeCurrentRecipe(sampleRecipeData[0], sampleRecipeData, sampleIngredients);
     expect(currentRecipe.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
     expect(currentRecipe.cost).to.equal('$177.76');
   });
