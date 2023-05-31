@@ -5,7 +5,7 @@
 import { filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { recipeData, usersData, ingredientsData } from './apiCalls'
+import { recipeData, usersData, ingredientsData } from './scripts'
 import { saveRecipe } from './functions/save-recipe.js'
 import { deleteRecipe } from './functions/delete-recipe.js'
 
@@ -39,7 +39,8 @@ const userBackButton = document.querySelector('.user__back');
 // DATAMODEL //
 let savedRecipes = [];
 let currentRecipe = {};
-let currentRecipes = recipeData;
+let currentRecipes = [];
+// currentRecipes.push(recipeData)
 
 // MODIFIERS //
 const show = (names) => {
