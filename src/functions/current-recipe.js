@@ -5,7 +5,7 @@ const makeCurrentRecipe = (recipe, recipeData, ingredientsData) => {
   if (!recipeData) {
     return {};
   }
-  let currentRecipe = {
+  return {
     name: recipe.name,
     id: recipe.id,
     image: recipe.image,
@@ -14,7 +14,6 @@ const makeCurrentRecipe = (recipe, recipeData, ingredientsData) => {
     instructions: recipe.instructions,
     ingredients: recipeIngredients(recipe.name, recipeData, ingredientsData)
   };
-  return currentRecipe;
 };
 
 export { makeCurrentRecipe }

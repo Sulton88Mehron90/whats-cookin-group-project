@@ -1,9 +1,9 @@
 const calculateCost = (name, recipeData, ingredientsData) => {
   const currentRecipe = getRecipe(name, recipeData);
-  if(!currentRecipe) {
-    return `Cannot calculate ${name} recipe cost`;
+  if(currentRecipe) {
+    return sumIngredients(ingredientsData, currentRecipe);
   } else {
-     return sumIngredients(ingredientsData, currentRecipe);
+    return `Cannot calculate ${name} recipe cost`;
   }
 };
 
