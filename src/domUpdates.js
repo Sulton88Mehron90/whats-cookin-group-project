@@ -5,7 +5,7 @@
 import { filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { recipeData, usersData, ingredientsData } from './apiCalls'
+import { recipeData, usersData, ingredientsData } from './scripts'
 import { saveRecipe } from './functions/save-recipe.js'
 import { deleteRecipe } from './functions/delete-recipe.js'
 
@@ -39,7 +39,8 @@ const userBackButton = document.querySelector('.user__back');
 // DATAMODEL //
 let savedRecipes = [];
 let currentRecipe = {};
-let currentRecipes = recipeData;
+let currentRecipes = [];
+// currentRecipes.push(recipeData)
 
 // MODIFIERS //
 const show = (names) => {
@@ -151,9 +152,9 @@ const searchRecipes = (recipes, searcher, container) => {
   displayRecipes(recipes, container);
 };
 
-const createRandomUser = () => {
+const createRandomUser = (usersData) => {
   const userId = Math.floor(Math.random()*usersData.length);
-  usersData.forEach(userData=> {
+  usersData.forEach(userData => {
     if (userData.id === userId) {
       userButton.innerText = `${userData.name}`;
       userName.innerText = `Welcome ${userData.name}!`;
