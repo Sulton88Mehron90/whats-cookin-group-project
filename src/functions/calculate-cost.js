@@ -1,12 +1,17 @@
 const calculateCost = (name, recipeData, ingredientsData) => {
-  let costs = [];
-  const currentRecipe = recipeData.find((item) => {
-    return item.name === name;
-  });
+  const currentRecipe = getRecipe(name, recipeData);
   if(!currentRecipe) {
     return `Cannot calculate ${name} recipe cost`;
   } else {
-  let recipeIngredients = currentRecipe.ingredients;
+     return sumIngredients(ingredientsData, currentRecipe);
+  }
+};
+
+const getRecipe = (name, recipeData) => recipeData.find((item) => item.name === name);
+
+const sumIngredients = (ingredientsData, currentRecipe) => {
+  const costs = [];
+  const recipeIngredients = currentRecipe.ingredients;
   recipeIngredients.forEach((recipeIngredient) => {
     ingredientsData.forEach((ingredient) => {
       if (ingredient.id === recipeIngredient.id){
@@ -14,11 +19,8 @@ const calculateCost = (name, recipeData, ingredientsData) => {
       }
     });
   });
-  let totalCost = costs.reduce((acc, currentValue) => 
-  acc + currentValue);
-  totalCost = totalCost.toFixed(2);
+  const totalCost = costs.reduce((acc, currentValue) => acc + currentValue).toFixed(2);
   return `$${totalCost}`;
-  }
-};
+}
 
 export { calculateCost }
