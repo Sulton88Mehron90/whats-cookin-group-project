@@ -152,9 +152,9 @@ const searchRecipes = (recipes, searcher, container) => {
   displayRecipes(recipes, container);
 };
 
-const createRandomUser = () => {
+const createRandomUser = (usersData) => {
   const userId = Math.floor(Math.random()*usersData.length);
-  usersData.forEach(userData=> {
+  usersData.forEach(userData => {
     if (userData.id === userId) {
       userButton.innerText = `${userData.name}`;
       userName.innerText = `Welcome ${userData.name}!`;

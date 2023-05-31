@@ -18,7 +18,8 @@ let recipeData = [];
 let ingredientsData = [];
 let usersData = [];
 
-Promise.all([fetchRecipes, fetchIngredients, fetchUsers])
+window.addEventListener('load', () => {
+  Promise.all([fetchRecipes, fetchIngredients, fetchUsers])
   .then(responses => {
     responses.forEach(response => {
       if (response.ok) {
@@ -30,26 +31,22 @@ Promise.all([fetchRecipes, fetchIngredients, fetchUsers])
               ingredientsData = data.ingredients;
             } else if (response.url.includes('/users')) {
               usersData = data.users;
+              createRandomUser(usersData)
             }
           })
           .catch(error => {
             console.error('Error parsing response:', error);
-            // There was an error parsing the data into JSON
           });
       } else {
         console.error('Request failed with status:', response.status);
-        // The response is not ok
       }
     });
   });
+});
 
 viewSearchResults.addEventListener('click', () => {
   searchRecipes(recipeData, searchInput, allContainer)
   showFilteredRecipes()
-});
-
-window.addEventListener('load', () => {
-  setTimeout(() => {createRandomUser()}, 1000);
 });
 
 userSearchIcon.addEventListener('click', () => {
