@@ -45,8 +45,7 @@ const filterRecipes = (recipeData, filter) => {
   if (!filter) {
     return [];
   }
-  let uniqueRecipes = [... new Set(recipes)];
-  return uniqueRecipes;
+  return [... new Set(recipes)];
 };
   
 export { filterByTag, filterByName, filterRecipes }
