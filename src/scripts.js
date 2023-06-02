@@ -11,7 +11,7 @@ import './images/chef-icon.png'
 import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
   categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser,
    userButton, saveTheRecipe, displayRecipes, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput, userBackButton, hide,
-  recipesToCook, currentRecipe, recipeToPost } from './domUpdates.js'
+  displayRecipesToCook, currentRecipe, recipeToPost } from './domUpdates.js'
 
 // EVENT LISTENERS //
 
@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
               usersData = data.users;
               currentUser = createRandomUser(usersData)
               console.log(currentUser)
-              recipesToCook(currentUser, savedRecipes)
+              displayRecipesToCook(currentUser, recipeData, savedRecipes)
             }
           })
           .catch(error => {

@@ -58,6 +58,8 @@ const showHome = () => {
 };
 
 const showUserPage = () => {
+  console.log(savedRecipes)
+  displayRecipesToCook(currentUser, recipeData, savedRecipes)
   displayRecipes(savedRecipes, userRecipes);
   show([userSection, homeButton]);
   hide([categoriesSection, recipeSection, allSection]);
@@ -191,9 +193,16 @@ const deleteTheRecipe = (event) => {
   displayRecipes(savedRecipes, userRecipes);
 };
 
-const recipesToCook = (user, savedRecipes) => {
-  savedRecipes.push(user.recipesToCook)
+const displayRecipesToCook = (user, recipeData, savedRecipes) => {
+  const foundRecipes = user.recipesToCook.forEach(savedRecipe => {
+    return recipeData.find(recipe => recipe.id === savedRecipe.id)
+  })
+  console.log(foundRecipes)
+  savedRecipes.push(foundRecipes);
 }
+
+// currentUser.recipesToCook array
+// 
 
 // EXPORTS //
 
@@ -228,6 +237,6 @@ export {
   saveTheRecipe,
   backFilteredRecipes,
   showFilteredRecipes,
-  recipesToCook,
+  displayRecipesToCook,
   recipeToPost
 }
