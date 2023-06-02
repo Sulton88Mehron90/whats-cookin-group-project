@@ -194,11 +194,19 @@ const deleteTheRecipe = (event) => {
 };
 
 const displayRecipesToCook = (user, recipeData, savedRecipes) => {
-  const foundRecipes = user.recipesToCook.forEach(savedRecipe => {
-    return recipeData.find(recipe => recipe.id === savedRecipe.id)
-  })
-  console.log(foundRecipes)
-  savedRecipes.push(foundRecipes);
+  if(!user.recipesToCook) {
+    return;
+  } else {
+    const foundRecipes = user.recipesToCook.forEach(savedRecipe => {
+      recipeData.forEach(recipe => {
+        if(savedRecipe === recipe.id && !savedRecipes.includes(recipe)) {
+          savedRecipes.push(recipe);
+        }  
+      })
+    })
+  }
+
+
 }
 
 // currentUser.recipesToCook array
