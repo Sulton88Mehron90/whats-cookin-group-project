@@ -49,6 +49,13 @@ viewSearchResults.addEventListener('click', () => {
   showFilteredRecipes()
 });
 
+searchInput.addEventListener('keypress', function(event) {
+  if(event.key === 'Enter') {
+    searchRecipes(recipeData, searchInput, allContainer)
+    showFilteredRecipes()
+  }
+})
+
 userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
 });
