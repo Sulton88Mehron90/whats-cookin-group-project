@@ -42,6 +42,7 @@ window.addEventListener('load', () => {
             console.error('Error parsing response:', error);
           });
       } else {
+        alert(`${response.status} server request failed, try again later`)
         console.error('Request failed with status:', response.status);
       }
     });
