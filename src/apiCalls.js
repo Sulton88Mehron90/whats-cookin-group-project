@@ -11,7 +11,13 @@ const postSavedRecipe = (data) => {
     'Content-type': 'application/json'
   }
 })
-  .then(response => response.json())
+  .then(response => {
+    if(response.ok) {
+      return response.json()
+    } else {
+      console.error('Request failed with status:', response.status)
+    }
+  })
   .then(json => console.log(json))
   .catch(err => console.log(err))
 }

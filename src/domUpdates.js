@@ -58,7 +58,6 @@ const showHome = () => {
 };
 
 const showUserPage = () => {
-  console.log(savedRecipes)
   displayRecipesToCook(currentUser, recipeData, savedRecipes)
   displayRecipes(savedRecipes, userRecipes);
   show([userSection, homeButton]);
@@ -169,7 +168,6 @@ const createRandomUser = (usersData) => {
 };
 
 const recipeToPost = (currentUser, currentRecipe) => {
-  console.log(currentUser)
   const recipe = {
     userID: currentUser.id,
     recipeID: currentRecipe.id
@@ -205,12 +203,7 @@ const displayRecipesToCook = (user, recipeData, savedRecipes) => {
       })
     })
   }
-
-
 }
-
-// currentUser.recipesToCook array
-// 
 
 // EXPORTS //
 
