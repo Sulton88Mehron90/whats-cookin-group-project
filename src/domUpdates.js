@@ -5,9 +5,10 @@
 import { filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { recipeData, usersData, ingredientsData } from './scripts'
+import { recipeData, usersData, ingredientsData, currentUser } from './scripts'
 import { saveRecipe } from './functions/save-recipe.js'
 import { deleteRecipe } from './functions/delete-recipe.js'
+import { postSavedRecipe } from "./apiCalls.js";
 
 // QUERY SELECTORS //
 
@@ -57,6 +58,7 @@ const showHome = () => {
 };
 
 const showUserPage = () => {
+  displayRecipesToCook(currentUser, recipeData, savedRecipes)
   displayRecipes(savedRecipes, userRecipes);
   show([userSection, homeButton]);
   hide([categoriesSection, recipeSection, allSection]);
@@ -153,22 +155,28 @@ const searchRecipes = (recipes, searcher, container) => {
 };
 
 const createRandomUser = (usersData) => {
+  let activeUser = {};
   const userId = Math.floor(Math.random()*usersData.length);
   usersData.forEach(userData => {
     if (userData.id === userId) {
       userButton.innerText = `${userData.name}`;
       userName.innerText = `Welcome ${userData.name}!`;
+      activeUser = userData;
     }
   });
+  return activeUser;
 };
+
+
 
 // ADD/REMOVE RECIPES //
 
 const saveTheRecipe = () => {
-
-const newRecipe = recipeData.filter((filteredRecipe)=> {
+  const newRecipe = recipeData.filter((filteredRecipe)=> {
   return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
   saveRecipe(newRecipe, savedRecipes)
+  const recipe = recipeToPost(currentUser, currentRecipe)
+  postSavedRecipe(recipe)
 }
 
 const deleteTheRecipe = (event) => {
@@ -176,6 +184,28 @@ const deleteTheRecipe = (event) => {
   deleteRecipe(targetId, savedRecipes)
   displayRecipes(savedRecipes, userRecipes);
 };
+
+const recipeToPost = (currentUser, currentRecipe) => {
+  const recipe = {
+    userID: currentUser.id,
+    recipeID: currentRecipe.id
+  }
+  return recipe
+}
+
+const displayRecipesToCook = (user, recipeData, savedRecipes) => {
+  if(!user.recipesToCook) {
+    return;
+  } else {
+    const foundRecipes = user.recipesToCook.forEach(savedRecipe => {
+      recipeData.forEach(recipe => {
+        if(savedRecipe === recipe.id && !savedRecipes.includes(recipe)) {
+          savedRecipes.push(recipe);
+        }  
+      })
+    })
+  }
+}
 
 // EXPORTS //
 
@@ -195,6 +225,7 @@ export {
   userRecipes,
   searchInput,
   userBackButton,
+  currentRecipe,
   hide,
   deleteTheRecipe,
   displayRecipes,
@@ -208,5 +239,7 @@ export {
   showUserPage,
   saveTheRecipe,
   backFilteredRecipes,
-  showFilteredRecipes
+  showFilteredRecipes,
+  displayRecipesToCook,
+  recipeToPost
 }
