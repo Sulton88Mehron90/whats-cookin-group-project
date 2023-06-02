@@ -1,6 +1,3 @@
-const saveRecipe = (recipe, savedRecipes) => {
-  savedRecipes.push(...recipe);
-    return savedRecipes;
-}
+const saveRecipe = (recipe, savedRecipes) => savedRecipes.push(...recipe); 
 
 export { saveRecipe }
