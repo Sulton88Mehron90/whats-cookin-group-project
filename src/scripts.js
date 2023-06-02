@@ -3,7 +3,7 @@
 // IMPORTS //
 
 import './styles.css'
-import { fetchRecipes, fetchIngredients, fetchUsers } from './apiCalls'
+import { fetchRecipes, fetchIngredients, fetchUsers, postSavedRecipe } from './apiCalls'
 import './images/food-panorama.jpg'
 import './images/turing-logo.png'
 import './images/search-icon.png'
@@ -11,17 +11,14 @@ import './images/chef-icon.png'
 import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
   categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser,
    userButton, saveTheRecipe, displayRecipes, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput, userBackButton, hide,
-  recipesToCook } from './domUpdates.js'
+  recipesToCook, currentRecipe, recipeToPost } from './domUpdates.js'
 
 // EVENT LISTENERS //
 
 let recipeData = [];
 let ingredientsData = [];
 let usersData = [];
-const newPost = {
-  userID: 1,
-  recipeID: 4
-}
+let currentUser = {};
 
 window.addEventListener('load', () => {
   Promise.all([fetchRecipes, fetchIngredients, fetchUsers])
@@ -36,7 +33,8 @@ window.addEventListener('load', () => {
               ingredientsData = data.ingredients;
             } else if (response.url.includes('/users')) {
               usersData = data.users;
-              let currentUser = createRandomUser(usersData)
+              currentUser = createRandomUser(usersData)
+              console.log(currentUser)
               recipesToCook(currentUser, savedRecipes)
             }
           })
@@ -49,19 +47,6 @@ window.addEventListener('load', () => {
     });
   });
 });
-
-const postSavedRecipe = (recipe) => {
-  fetch('http://localhost:3001/api/v1/usersRecipes', {
-  method: 'POST',
-  body: JSON.stringify(recipe),
-  headers: {
-    'Content-type': 'application/json'
-  }
-})
-  .then(response => response.json())
-  .then(json => console.log(json))
-  .catch(err => console.log(err))
-}
 
 viewSearchResults.addEventListener('click', () => {
   searchRecipes(recipeData, searchInput, allContainer)
@@ -81,9 +66,11 @@ userButton.addEventListener('click', showUserPage);
 homeButton.addEventListener('click', showHome);
 categoriesContainer.addEventListener('click', viewRecipes);
 allContainer.addEventListener('click', selectRecipe);
-saveButton.addEventListener('click', saveTheRecipe);
+saveButton.addEventListener('click', () => {
+  saveTheRecipe()
+});
 backButton.addEventListener('click', backFilteredRecipes);
 userRecipes.addEventListener('click', selectRecipe);
 
 
-export { recipeData, ingredientsData, usersData }
+export { recipeData, ingredientsData, usersData, currentUser }

@@ -5,9 +5,10 @@
 import { filterRecipes } from "./functions/filter-recipes.js"
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { recipeData, usersData, ingredientsData } from './scripts'
+import { recipeData, usersData, ingredientsData, currentUser } from './scripts'
 import { saveRecipe } from './functions/save-recipe.js'
 import { deleteRecipe } from './functions/delete-recipe.js'
+import { postSavedRecipe } from "./apiCalls.js";
 
 // QUERY SELECTORS //
 
@@ -153,23 +154,35 @@ const searchRecipes = (recipes, searcher, container) => {
 };
 
 const createRandomUser = (usersData) => {
+  let activeUser = {};
   const userId = Math.floor(Math.random()*usersData.length);
   usersData.forEach(userData => {
     if (userData.id === userId) {
       userButton.innerText = `${userData.name}`;
       userName.innerText = `Welcome ${userData.name}!`;
-      return userData;
+      activeUser = userData;
     }
   });
+  return activeUser;
 };
+
+const recipeToPost = (currentUser, currentRecipe) => {
+  console.log(currentUser)
+  const recipe = {
+    userID: currentUser.id,
+    recipeID: currentRecipe.id
+  }
+  return recipe
+}
 
 // ADD/REMOVE RECIPES //
 
 const saveTheRecipe = () => {
-
-const newRecipe = recipeData.filter((filteredRecipe)=> {
+  const newRecipe = recipeData.filter((filteredRecipe)=> {
   return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
   saveRecipe(newRecipe, savedRecipes)
+  const recipe = recipeToPost(currentUser, currentRecipe)
+  postSavedRecipe(recipe)
 }
 
 const deleteTheRecipe = (event) => {
@@ -200,6 +213,7 @@ export {
   userRecipes,
   searchInput,
   userBackButton,
+  currentRecipe,
   hide,
   deleteTheRecipe,
   displayRecipes,
@@ -214,5 +228,6 @@ export {
   saveTheRecipe,
   backFilteredRecipes,
   showFilteredRecipes,
-  recipesToCook
+  recipesToCook,
+  recipeToPost
 }
