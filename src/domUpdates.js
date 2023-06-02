@@ -167,13 +167,7 @@ const createRandomUser = (usersData) => {
   return activeUser;
 };
 
-const recipeToPost = (currentUser, currentRecipe) => {
-  const recipe = {
-    userID: currentUser.id,
-    recipeID: currentRecipe.id
-  }
-  return recipe
-}
+
 
 // ADD/REMOVE RECIPES //
 
@@ -190,6 +184,14 @@ const deleteTheRecipe = (event) => {
   deleteRecipe(targetId, savedRecipes)
   displayRecipes(savedRecipes, userRecipes);
 };
+
+const recipeToPost = (currentUser, currentRecipe) => {
+  const recipe = {
+    userID: currentUser.id,
+    recipeID: currentRecipe.id
+  }
+  return recipe
+}
 
 const displayRecipesToCook = (user, recipeData, savedRecipes) => {
   if(!user.recipesToCook) {
