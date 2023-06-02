@@ -60,6 +60,12 @@ userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
 });
 
+userSearchInput.addEventListener('keypress', function(event) {
+  if(event.key === 'Enter') {
+    searchRecipes(savedRecipes, userSearchInput, userRecipes)
+  }
+})
+
 userBackButton.addEventListener('click', () => {
   displayRecipes(savedRecipes, userRecipes);
   hide([userBackButton]);
