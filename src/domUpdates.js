@@ -158,6 +158,7 @@ const createRandomUser = (usersData) => {
     if (userData.id === userId) {
       userButton.innerText = `${userData.name}`;
       userName.innerText = `Welcome ${userData.name}!`;
+      return userData;
     }
   });
 };
@@ -176,6 +177,10 @@ const deleteTheRecipe = (event) => {
   deleteRecipe(targetId, savedRecipes)
   displayRecipes(savedRecipes, userRecipes);
 };
+
+const recipesToCook = (user, savedRecipes) => {
+  savedRecipes.push(user.recipesToCook)
+}
 
 // EXPORTS //
 
@@ -208,5 +213,6 @@ export {
   showUserPage,
   saveTheRecipe,
   backFilteredRecipes,
-  showFilteredRecipes
+  showFilteredRecipes,
+  recipesToCook
 }

@@ -10,13 +10,18 @@ import './images/search-icon.png'
 import './images/chef-icon.png'
 import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
   categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser,
-   userButton, saveTheRecipe, displayRecipes, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput, userBackButton, hide } from './domUpdates.js'
+   userButton, saveTheRecipe, displayRecipes, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput, userBackButton, hide,
+  recipesToCook } from './domUpdates.js'
 
 // EVENT LISTENERS //
 
 let recipeData = [];
 let ingredientsData = [];
 let usersData = [];
+const newPost = {
+  userID: 1,
+  recipeID: 4
+}
 
 window.addEventListener('load', () => {
   Promise.all([fetchRecipes, fetchIngredients, fetchUsers])
@@ -31,7 +36,8 @@ window.addEventListener('load', () => {
               ingredientsData = data.ingredients;
             } else if (response.url.includes('/users')) {
               usersData = data.users;
-              createRandomUser(usersData)
+              let currentUser = createRandomUser(usersData)
+              recipesToCook(currentUser, savedRecipes)
             }
           })
           .catch(error => {
@@ -43,6 +49,19 @@ window.addEventListener('load', () => {
     });
   });
 });
+
+const postSavedRecipe = (recipe) => {
+  fetch('http://localhost:3001/api/v1/usersRecipes', {
+  method: 'POST',
+  body: JSON.stringify(recipe),
+  headers: {
+    'Content-type': 'application/json'
+  }
+})
+  .then(response => response.json())
+  .then(json => console.log(json))
+  .catch(err => console.log(err))
+}
 
 viewSearchResults.addEventListener('click', () => {
   searchRecipes(recipeData, searchInput, allContainer)
