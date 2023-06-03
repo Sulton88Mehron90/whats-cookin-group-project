@@ -69,7 +69,7 @@ h1 {
   display: flex;
 }
 
-.home__button, .recipe__sbutton, .user__back, .recipe__back {
+.home__button, .recipe__sbutton, .recipe__print, .user__back, .recipe__back {
   background-color: rgb(133, 38, 38);
   color: white;
   height: 2em;
@@ -214,6 +214,10 @@ flex-direction: column;
   flex-direction: column;
 }
 
+.recipe__printerFriendly {
+  width: 90%;
+}
+
 /* USER SECTION */
 
 .user__header, .user__recipes, .user__recipe, .user__hbutton {
@@ -291,11 +295,11 @@ flex-direction: column;
   display: none;
 }
 
-.recipe__back:hover, .home__button:hover, .user__back:hover, .recipe__sbutton:hover, .user__hbutton:hover, .home__ubutton:hover, .delete__button:hover {
+.recipe__back:hover, .home__button:hover, .user__back:hover, .recipe__sbutton:hover, .recipe__print:hover, .user__hbutton:hover, .home__ubutton:hover, .delete__button:hover {
   background-color:rgb(241, 167, 167)
 }
 
-.recipe__back, .user__back, .home__button, .home__searchIcon, .recipe__sbutton, .user__searchIcon, .delete__button {
+.recipe__back, .user__back, .home__button, .home__searchIcon, .recipe__sbutton, .recipe__print, .user__searchIcon, .delete__button {
   cursor: pointer;
 }
 

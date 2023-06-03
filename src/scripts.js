@@ -11,7 +11,7 @@ import './images/chef-icon.png'
 import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
   categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser,
    userButton, saveTheRecipe, displayRecipes, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput, userBackButton, hide,
-  displayRecipesToCook, currentRecipe, recipeToPost } from './domUpdates.js'
+  displayRecipesToCook, currentRecipe, recipeToPost, recipePrint, createPrinterRecipe } from './domUpdates.js'
 
 // EVENT LISTENERS //
 
@@ -53,9 +53,22 @@ viewSearchResults.addEventListener('click', () => {
   showFilteredRecipes()
 });
 
+searchInput.addEventListener('keypress', function(event) {
+  if(event.key === 'Enter') {
+    searchRecipes(recipeData, searchInput, allContainer)
+    showFilteredRecipes()
+  }
+})
+
 userSearchIcon.addEventListener('click', () => {
   searchRecipes(savedRecipes, userSearchInput, userRecipes)
 });
+
+userSearchInput.addEventListener('keypress', function(event) {
+  if(event.key === 'Enter') {
+    searchRecipes(savedRecipes, userSearchInput, userRecipes)
+  }
+})
 
 userBackButton.addEventListener('click', () => {
   displayRecipes(savedRecipes, userRecipes);
@@ -71,6 +84,8 @@ saveButton.addEventListener('click', () => {
 });
 backButton.addEventListener('click', backFilteredRecipes);
 userRecipes.addEventListener('click', selectRecipe);
+recipePrint.addEventListener('click', createPrinterRecipe);
+
 
 
 export { recipeData, ingredientsData, usersData, currentUser }

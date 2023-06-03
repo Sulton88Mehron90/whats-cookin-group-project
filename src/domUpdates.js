@@ -36,6 +36,11 @@ const backButton = document.querySelector('.recipe__back');
 const userSearchIcon = document.querySelector('.user__searchIcon');
 const userSearchInput = document.querySelector('.user__search__input');
 const userBackButton = document.querySelector('.user__back');
+const recipePrint = document.querySelector('.recipe__print');
+const home = document.querySelector('.home');
+const printerFriendlyRecipe = document.querySelector('.recipe__printerFriendly');
+const recipeLeft = document.querySelector('.recipe__left');
+
 
 // DATAMODEL //
 let savedRecipes = [];
@@ -89,7 +94,7 @@ const viewRecipes = (event) => {
 
 const viewRecipe = (recipe) => {
   show([recipeSection]);
-  hide([allSection, userSection]);
+  hide([allSection, userSection, printerFriendlyRecipe]);
   const userRecipeIngredients = recipeIngredients(recipe.name, recipeData, ingredientsData);
   userRecipeIngredients.forEach(ingredient => {
     ingredientsDisplay.innerHTML += `
@@ -167,13 +172,44 @@ const createRandomUser = (usersData) => {
   return activeUser;
 };
 
+const createPrinterRecipe = () => {
+  show([printerFriendlyRecipe])
+  hide([recipePrint, backButton, recipeLeft, saveButton, imageContainer, home, recipeCost, ingredientsDisplay, instructionsDisplay ])
+  printerFriendlyRecipe.innerHTML = 'Instructions:'
+  currentRecipe.instructions.forEach(instruction => {
+        printerFriendlyRecipe.innerHTML += `
+        <p style="margin: inherit"> ${instruction.instruction}</p>
+        ` 
+      });
+      printerFriendlyRecipe.innerHTML += '<br>Ingredients:'
+      currentRecipe.ingredients.forEach(ingredient => {
+        printerFriendlyRecipe.innerHTML += `
+        <p style="margin: inherit"> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
+        ` 
+      });
+      printerFriendlyRecipe.innerHTML += '<br><button class="recipe__back" id="return">Return</button>'
+      // const recipeBack = document.querySelector('.recipe__back');
+      printerFriendlyRecipe.addEventListener('click', showRecipe)
+}
 
+const showRecipe = (event) => {
+  if(event.target.id === 'return'){
+    hide([printerFriendlyRecipe])
+    show([recipePrint, backButton, recipeLeft, saveButton, imageContainer, home, recipeCost, ingredientsDisplay, instructionsDisplay ])
+  }
+}
 
 // ADD/REMOVE RECIPES //
 
 const saveTheRecipe = () => {
   const newRecipe = recipeData.filter((filteredRecipe)=> {
-  return filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)})
+    if(filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)){
+      return filteredRecipe.name
+    } 
+  })
+  if(!newRecipe.length){
+    return alert('this item is already saved')
+  }
   saveRecipe(newRecipe, savedRecipes)
   const recipe = recipeToPost(currentUser, currentRecipe)
   postSavedRecipe(recipe)
@@ -226,6 +262,8 @@ export {
   searchInput,
   userBackButton,
   currentRecipe,
+  recipePrint,
+  createPrinterRecipe,
   hide,
   deleteTheRecipe,
   displayRecipes,
