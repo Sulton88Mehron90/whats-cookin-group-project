@@ -1,8 +1,8 @@
 const recipeInstructions = (recipe) => {
-  if (!recipe) {
-    return 'No recipe located';
-  };
-  return recipe.instructions;
+  if (recipe) {
+    return recipe.instructions;
+  }; 
+  return 'No recipe located';
 };
 
 export { recipeInstructions }

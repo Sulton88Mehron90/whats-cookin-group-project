@@ -1,24 +1,24 @@
 const recipeIngredients = (recipeName, recipeData, ingredientsData) => {
   const outputArray = [];
-  const filteredRecipe = recipeData.find((recipe) => {
-    return recipe.name === recipeName
-  });
-   if (!filteredRecipe) {
-     return `Sorry, cannot find a recipe for ${recipeName}.`;
-   };
-   filteredRecipe.ingredients.forEach(recipeIngredient => {
-    ingredientsData.forEach(ingredient => {
-      if (recipeIngredient.id === ingredient.id) {
-        let output = {};
-        output.name = ingredient.name;
-        output.amount = recipeIngredient.quantity.amount;
-        output.unit = recipeIngredient.quantity.unit;
-        output.cost = ingredient.estimatedCostInCents;
-        outputArray.push(output);
-      };
+  const filteredRecipe = recipeData.find(recipe => recipe.name === recipeName);
+   if (filteredRecipe) {
+    filteredRecipe.ingredients.forEach(recipeIngredient => {
+      ingredientsData.forEach(ingredient => {
+        if (recipeIngredient.id === ingredient.id) {
+          const {name, estimatedCostInCents} = ingredient;
+          const {quantity: {amount, unit}} = recipeIngredient;
+          outputArray.push({
+            name,
+            amount,
+            unit,
+            cost: estimatedCostInCents
+          });
+        };
+      });
     });
-  });
-  return outputArray;
+    return outputArray;
+   } 
+   return `Sorry, cannot find a recipe for ${recipeName}.`;
 };
 
 export { recipeIngredients };
