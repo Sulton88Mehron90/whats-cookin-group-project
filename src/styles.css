@@ -214,6 +214,10 @@ flex-direction: column;
   flex-direction: column;
 }
 
+.recipe__printerFriendly {
+  width: 90%;
+}
+
 /* USER SECTION */
 
 .user__header, .user__recipes, .user__recipe, .user__hbutton {
