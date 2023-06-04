@@ -32,8 +32,7 @@ body {
   margin: 0;
   background-color: rgb(205, 205, 205);
 }
-
-.home__header__secondary {
+.home__header2 {
   display: flex;
   align-items: center;
 }
