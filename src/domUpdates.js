@@ -156,6 +156,7 @@ const searchRecipes = (recipes, searcher, container) => {
   }
   allHeader.innerText = searcher.value;
   recipes = filterRecipes(recipes, searcher.value);
+  currentRecipes = recipes;
   displayRecipes(recipes, container);
 };
 
