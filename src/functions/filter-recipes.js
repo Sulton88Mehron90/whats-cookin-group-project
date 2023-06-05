@@ -26,13 +26,13 @@ const filterRecipes = (recipeData, filter) => {
   const filteredByName = filterByName(recipeData, filter);
   const filteredByTag = filterByTag(recipeData, filter);
   if (filteredByName !== 'No results' && filteredByName.length > 0) {
-    recipes.push.apply(recipes, filteredByName);
+    recipes.push(...filteredByName);
   }
   if (filteredByTag !== 'Error: try a new tag' && filteredByTag.length > 0) {
-    recipes.push.apply(recipes, filteredByTag);
+    recipes.push(...filteredByTag);
   }
   if (filter === 'all') {
-    recipes.push.apply(recipes, recipeData);
+    recipes.push(...recipeData);
   }
   return [...new Set(recipes)];
 };
