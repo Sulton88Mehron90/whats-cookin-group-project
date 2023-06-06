@@ -2,18 +2,49 @@
 
 // IMPORTS //
 
-import './styles.css'
-import { fetchRecipes, fetchIngredients, fetchUsers, postSavedRecipe } from './apiCalls'
-import './images/food-panorama.jpg'
-import './images/turing-logo.png'
-import './images/search-icon.png'
-import './images/chef-icon.png'
-import { allContainer, viewRecipes, viewSearchResults, homeButton, showHome, showUserPage,
-  categoriesContainer, selectRecipe, searchRecipes, showFilteredRecipes, saveButton, createRandomUser,
-   userButton, saveTheRecipe, displayRecipes, backButton, savedRecipes, userSearchIcon, userSearchInput, userRecipes, backFilteredRecipes, searchInput, userBackButton, hide,
-  displayRecipesToCook, currentRecipe, recipeToPost, recipePrint, createPrinterRecipe } from './domUpdates.js'
+import './styles.css';
+import './images/food-panorama.jpg';
+import './images/turing-logo.png';
+import './images/search-icon.png';
+import './images/chef-icon.png';
 
-// EVENT LISTENERS //
+import { 
+  fetchRecipes, 
+  fetchIngredients, 
+  fetchUsers 
+} from './apiCalls';
+
+  import { 
+  allContainer, 
+  viewRecipes, 
+  viewSearchResults, 
+  homeButton, 
+  showHome, 
+  showUserPage,
+  categoriesContainer, 
+  selectRecipe, 
+  searchRecipes, 
+  showFilteredRecipes, 
+  saveButton, 
+  createRandomUser,
+  userButton, 
+  saveTheRecipe, 
+  displayRecipes, 
+  backButton, 
+  savedRecipes, 
+  userSearchIcon, 
+  userSearchInput, 
+  userRecipes, 
+  backFilteredRecipes, 
+  searchInput, 
+  userBackButton, 
+  hide,
+  displayRecipesToCook, 
+  recipePrint, 
+  createPrinterRecipe 
+} from './domUpdates.js';
+
+// FETCHED DATA //
 
 let recipeData = [];
 let ingredientsData = [];
@@ -48,6 +79,8 @@ window.addEventListener('load', () => {
     });
   });
 });
+
+// EVENT LISTENERS //
 
 viewSearchResults.addEventListener('click', () => {
   searchRecipes(recipeData, searchInput, allContainer)
@@ -88,5 +121,11 @@ userRecipes.addEventListener('click', selectRecipe);
 recipePrint.addEventListener('click', createPrinterRecipe);
 
 
+// EXPORTS //
 
-export { recipeData, ingredientsData, usersData, currentUser }
+export { 
+  recipeData, 
+  ingredientsData, 
+  usersData, 
+  currentUser
+};

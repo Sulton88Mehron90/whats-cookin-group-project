@@ -2,12 +2,12 @@
 
 // IMPORTS //
 
-import { filterRecipes } from "./functions/filter-recipes.js"
+import { filterRecipes } from "./functions/filter-recipes.js";
 import { makeCurrentRecipe } from "./functions/current-recipe.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
-import { recipeData, usersData, ingredientsData, currentUser } from './scripts'
-import { saveRecipe } from './functions/save-recipe.js'
-import { deleteRecipe } from './functions/delete-recipe.js'
+import { recipeData, ingredientsData, currentUser } from './scripts';
+import { saveRecipe } from './functions/save-recipe.js';
+import { deleteRecipe } from './functions/delete-recipe.js';
 import { postSavedRecipe } from "./apiCalls.js";
 
 // QUERY SELECTORS //
@@ -46,7 +46,6 @@ const recipeLeft = document.querySelector('.recipe__left');
 let savedRecipes = [];
 let currentRecipe = {};
 let currentRecipes = [];
-// currentRecipes.push(recipeData)
 
 // MODIFIERS //
 const show = (names) => {
@@ -63,7 +62,7 @@ const showHome = () => {
 };
 
 const showUserPage = () => {
-  displayRecipesToCook(currentUser, recipeData, savedRecipes)
+  displayRecipesToCook(currentUser, recipeData, savedRecipes);
   displayRecipes(savedRecipes, userRecipes);
   show([userSection, homeButton]);
   hide([categoriesSection, recipeSection, allSection]);
@@ -98,7 +97,7 @@ const viewRecipe = (recipe) => {
   const userRecipeIngredients = recipeIngredients(recipe.name, recipeData, ingredientsData);
   userRecipeIngredients.forEach(ingredient => {
     ingredientsDisplay.innerHTML += `
-    <p class= recipe__instruction style= "margin: inherit"> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
+    <p class= recipe__instruction style= "margin: inherit"> ${ingredient.amount.toFixed(2)} ${ingredient.unit} ${ingredient.name}</p>
     ` 
   });
   recipeTitle.innerText = recipe.name;
@@ -108,7 +107,7 @@ const viewRecipe = (recipe) => {
 };
 
 const displayRecipes = (recipes, container) => {
-  container.innerHTML = ''
+  container.innerHTML = '';
   if (!recipes.length) {
     allHeader.innerText = 'No results'
   } else {
@@ -132,18 +131,23 @@ const displayRecipes = (recipes, container) => {
 const selectRecipe = (event) => {
   const target = parseInt(event.target.id);
   const targetClass = event.target.parentNode.classList;
-  show ([backButton, saveButton])
+  show([backButton, saveButton]);
+  
   if(targetClass.contains('user__recipes')) {
     hide([backButton, saveButton])
   }
+
   if(event.target.classList.contains('delete__button')) {
     deleteTheRecipe(event);
     return;
   }
+
   const foundRecipe = recipeData.find(recipe => recipe.id === target);
+  
   if (!foundRecipe) {
     return;
   }
+
   currentRecipe = makeCurrentRecipe(foundRecipe, recipeData, ingredientsData);
   ingredientsDisplay.innerHTML = " ";
   instructionsDisplay.innerHTML = " ";
@@ -152,7 +156,7 @@ const selectRecipe = (event) => {
 
 const searchRecipes = (recipes, searcher, container) => {
   if(searcher === userSearchInput) {
-    show([userBackButton])
+    show([userBackButton]);
   }
   allHeader.innerText = searcher.value;
   recipes = filterRecipes(recipes, searcher.value);
@@ -174,51 +178,50 @@ const createRandomUser = (usersData) => {
 };
 
 const createPrinterRecipe = () => {
-  show([printerFriendlyRecipe])
-  hide([recipePrint, backButton, recipeLeft, saveButton, imageContainer, home, recipeCost, ingredientsDisplay, instructionsDisplay ])
-  printerFriendlyRecipe.innerHTML = 'Instructions:'
+  show([printerFriendlyRecipe]);
+  hide([recipePrint, backButton, recipeLeft, saveButton, imageContainer, home, recipeCost, ingredientsDisplay, instructionsDisplay ]);
+  printerFriendlyRecipe.innerHTML = 'Instructions:';
   currentRecipe.instructions.forEach(instruction => {
-        printerFriendlyRecipe.innerHTML += `
-        <p style="margin: inherit"> ${instruction.instruction}</p>
-        ` 
-      });
-      printerFriendlyRecipe.innerHTML += '<br>Ingredients:'
-      currentRecipe.ingredients.forEach(ingredient => {
-        printerFriendlyRecipe.innerHTML += `
-        <p style="margin: inherit"> ${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
-        ` 
-      });
-      printerFriendlyRecipe.innerHTML += '<br><button class="recipe__back" id="return">Return</button>'
-      // const recipeBack = document.querySelector('.recipe__back');
-      printerFriendlyRecipe.addEventListener('click', showRecipe)
-}
+    printerFriendlyRecipe.innerHTML += 
+      `<p style="margin: inherit"> ${instruction.instruction}</p>` 
+  });
+  printerFriendlyRecipe.innerHTML += '<br>Ingredients:';
+  currentRecipe.ingredients.forEach(ingredient => {
+  printerFriendlyRecipe.innerHTML += 
+    `<p style="margin: inherit"> ${ingredient.amount.toFixed(2)} ${ingredient.unit} ${ingredient.name}</p>` 
+  });
+  printerFriendlyRecipe.innerHTML += '<br><button class="recipe__back" id="return">Return</button>'
+  printerFriendlyRecipe.addEventListener('click', showRecipe);
+};
 
 const showRecipe = (event) => {
-  if(event.target.id === 'return'){
-    hide([printerFriendlyRecipe])
-    show([recipePrint, backButton, recipeLeft, saveButton, imageContainer, home, recipeCost, ingredientsDisplay, instructionsDisplay ])
+  if(event.target.id === 'return') {
+    hide([printerFriendlyRecipe]);
+    show([recipePrint, recipeLeft, saveButton, imageContainer, home, recipeCost, ingredientsDisplay, instructionsDisplay ]);
   }
-}
+};
 
 // ADD/REMOVE RECIPES //
 
 const saveTheRecipe = () => {
-  const newRecipe = recipeData.filter((filteredRecipe)=> {
-    if(filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)){
-      return filteredRecipe.name
+  const newRecipe = recipeData.filter(filteredRecipe => {
+    if(filteredRecipe.name === recipeTitle.innerText && !savedRecipes.includes(filteredRecipe)) {
+      return filteredRecipe.name;
     } 
-  })
-  if(!newRecipe.length){
-    return alert('this item is already saved')
-  }
-  saveRecipe(newRecipe, savedRecipes)
-  const recipe = recipeToPost(currentUser, currentRecipe)
-  postSavedRecipe(recipe)
-}
+  });
+  
+  if(!newRecipe.length) {
+    return alert('this item is already saved');
+  };
+  
+  saveRecipe(newRecipe, savedRecipes);
+  const recipe = recipeToPost(currentUser, currentRecipe);
+  postSavedRecipe(recipe);
+};
 
 const deleteTheRecipe = (event) => {
   const targetId = parseInt(event.target.id);
-  deleteRecipe(targetId, savedRecipes)
+  deleteRecipe(targetId, savedRecipes);
   displayRecipes(savedRecipes, userRecipes);
 };
 
@@ -226,9 +229,9 @@ const recipeToPost = (currentUser, currentRecipe) => {
   const recipe = {
     userID: currentUser.id,
     recipeID: currentRecipe.id
-  }
-  return recipe
-}
+  };
+  return recipe;
+};
 
 const displayRecipesToCook = (user, recipeData, savedRecipes) => {
   if(!user.recipesToCook) {
@@ -242,7 +245,7 @@ const displayRecipesToCook = (user, recipeData, savedRecipes) => {
       })
     })
   }
-}
+};
 
 // EXPORTS //
 
@@ -281,4 +284,4 @@ export {
   showFilteredRecipes,
   displayRecipesToCook,
   recipeToPost
-}
+};
