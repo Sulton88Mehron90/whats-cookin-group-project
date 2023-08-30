@@ -43,7 +43,7 @@ The details of this project are outlined in the project specs
 - Fetch API
 
 ## APP PREVIEW
-https://www.loom.com/share/d4e78185aee34262b0315096767db4a0
+[DEPLOYED LINK](https://whats-cookin-group-project.vercel.app/)
 
 ## FEATURES
 
